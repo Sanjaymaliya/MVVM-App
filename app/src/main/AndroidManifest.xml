@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.e.quizapp">
+    package="com.e.app">
 
     <application
-        android:name=".App"
+        android:name="com.e.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.dashboard.DashboardActivity"></activity>
-        <activity android:name=".ui.splashscreen.SplashActivity">
+        <activity android:name="com.e.app.ui.dashboard.DashboardActivity"></activity>
+        <activity android:name="com.e.app.ui.splashscreen.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
