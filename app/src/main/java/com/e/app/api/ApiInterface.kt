@@ -1,8 +1,5 @@
 package com.e.app.api
 
-
-import com.example.zestbrains.misateacher.model.*
-import com.example.zestbrains.misateacher.restapi.WebConstant.TOKEN
 import retrofit2.Call
 import retrofit2.http.*
 

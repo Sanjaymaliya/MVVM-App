@@ -7,7 +7,7 @@ import com.e.app.R
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivitySplashBinding
 import com.e.app.extensions.openActivity
-import com.e.app.ui.dashboard.DashboardActivity
+import com.e.app.ui.login.LoginActivity
 import com.e.app.utils.ViewModelProviderFactory
 import org.koin.android.ext.android.inject
 
@@ -40,7 +40,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
 
     }
     override fun onMainScreen() {
-        openActivity(DashboardActivity::class.java)
+        openActivity(LoginActivity::class.java)
     }
 
 }

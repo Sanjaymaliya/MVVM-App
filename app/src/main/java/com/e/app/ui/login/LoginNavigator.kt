@@ -4,5 +4,6 @@ import com.e.app.base.BaseNavigator
 
 interface LoginNavigator : BaseNavigator {
     fun onRegisterHandle()
-    fun onAuthFail()
+    fun onAuthFail(errorMassage:String)
+    fun onAuthSuccess()
 }

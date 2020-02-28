@@ -8,10 +8,13 @@ import com.e.app.R
 import com.e.app.adapter.DashboarAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityDashboardBinding
+import com.e.app.extensions.showToast
+import com.e.app.utils.PHONE_NUMBER
 import com.e.app.utils.ViewModelProviderFactory
 import org.koin.android.ext.android.inject
 
-class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(),DashboardNavigator {
+class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(),
+    DashboardNavigator {
 
     private val factory: ViewModelProviderFactory by inject()
 
@@ -36,12 +39,15 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         super.onCreate(savedInstanceState)
         activityLoginBinding = getViewDataBinding()
         viewModel.setNavigator(this)
+        intent.extras?.run {
+            viewModel.phoneNumber = getString(PHONE_NUMBER, "")
+        }
+        viewModel.sendVerificationCode(viewModel.phoneNumber)
         setRecyclerViewData()
     }
 
-    private fun setRecyclerViewData()
-    {
-        viewModel.dashboarAdapater = DashboarAdapater(this@DashboardActivity,this)
+    private fun setRecyclerViewData() {
+        viewModel.dashboarAdapater = DashboarAdapater(this@DashboardActivity, this)
         with(activityLoginBinding!!.recyclerViewDashboard) {
 
             var linearLayoutManager = LinearLayoutManager(this@DashboardActivity)
@@ -49,6 +55,20 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
             adapter = viewModel.dashboarAdapater
 
         }
+    }
+
+    override fun setOpt(opt: String) {
+
+        showToast("Success")
+
+    }
+
+    override fun successVarification() {
+        showToast("Success")
+    }
+
+    override fun fialVarification(message: String?) {
+        showToast(message!!)
     }
 
 

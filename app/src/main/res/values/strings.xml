@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">App</string>
+    <string name="verify_your_number">Verify Your Number</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="continue_">Continue</string>
+    <string name="phone_number_error">Please enter phone number</string>
+    <string name="phone_number_valid_phone_number">Please enter valid phone number</string>
 </resources>

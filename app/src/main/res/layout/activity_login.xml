@@ -19,51 +19,169 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tiEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_25sdp"
-            android:layout_marginEnd="35dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:passwordToggleEnabled="true">
 
-            <EditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:importantForAutofill="no"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnSingIn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="sing_in"
-            android:onClick="@{()->viewModel.onRegisterButtonClick()}"
-            android:textAllCaps="true"
-            app:layout_constraintTop_toBottomOf="@+id/tiEmail"
-            android:theme="@style/Theme.MaterialComponents.Light"
-            app:backgroundTint="@color/colorPrimary"
-            app:cornerRadius="@dimen/_30sdp" />
-
-
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontalWeightGuide1"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25"/>
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imgPhone"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_140sdp"
+                android:src="@drawable/img_number_verification"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtVerifyMobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/verify_your_number"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Title"
+                android:textColor="@color/colorGrey80"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgPhone" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutCountryCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtVerifyMobile">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/ccp_login_country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:ccpDialog_keyboardAutoPopup="false"
+                    app:ccpDialog_searchEditTextTint="?attr/colorPrimary"
+                    app:ccpDialog_textColor="?attr/colorPrimary"
+                    app:ccp_arrowSize="25dp"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_autoFormatNumber="true"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_showPhoneCode="true"
+                    app:ccp_textSize="@dimen/_16ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGrey80"
+                    app:layout_constraintEnd_toEndOf="@+id/ccp_login_country"
+                    app:layout_constraintStart_toStartOf="@+id/ccp_login_country"
+                    app:layout_constraintTop_toBottomOf="@+id/ccp_login_country" />
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ti_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@null"
+                    android:hint="@string/phone_number"
+                    android:inputType="number"
+                    android:maxLength="14"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ccp_login_country"
+                    app:layout_constraintStart_toEndOf="@+id/ccp_login_country"
+                    app:layout_constraintTop_toTopOf="@+id/ccp_login_country" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGrey80"
+                    app:layout_constraintBottom_toBottomOf="@+id/view1"
+                    app:layout_constraintEnd_toEndOf="@+id/ti_mobile"
+                    app:layout_constraintStart_toStartOf="@+id/ti_mobile"
+                    app:layout_constraintTop_toBottomOf="@+id/ti_mobile"
+                    app:layout_constraintTop_toTopOf="@+id/view1" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSingIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:onClick="@{()->viewModel.onRegisterButtonClick()}"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingStart="@dimen/_38sdp"
+                android:paddingEnd="@dimen/_38sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:text="@string/continue_"
+                android:textAllCaps="true"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:backgroundTint="@color/colorPrimary"
+                app:cornerRadius="@dimen/_30sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutCountryCode" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tiEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_25sdp"
+                    android:layout_marginEnd="35dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:passwordToggleEnabled="true">
+
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSingIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="sing_in"
+                    android:onClick="@{()->viewModel.onRegisterButtonClick()}"
+                    android:textAllCaps="true"
+                    app:layout_constraintTop_toBottomOf="@+id/tiEmail"
+                    android:theme="@style/Theme.MaterialComponents.Light"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:cornerRadius="@dimen/_30sdp" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/horizontalWeightGuide1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.25"/>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
