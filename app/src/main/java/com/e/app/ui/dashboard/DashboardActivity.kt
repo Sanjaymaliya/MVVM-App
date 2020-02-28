@@ -39,10 +39,6 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         super.onCreate(savedInstanceState)
         activityLoginBinding = getViewDataBinding()
         viewModel.setNavigator(this)
-        intent.extras?.run {
-            viewModel.phoneNumber = getString(PHONE_NUMBER, "")
-        }
-        viewModel.sendVerificationCode(viewModel.phoneNumber)
         setRecyclerViewData()
     }
 
@@ -56,20 +52,5 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
 
         }
     }
-
-    override fun setOpt(opt: String) {
-
-        showToast("Success")
-
-    }
-
-    override fun successVarification() {
-        showToast("Success")
-    }
-
-    override fun fialVarification(message: String?) {
-        showToast(message!!)
-    }
-
 
 }

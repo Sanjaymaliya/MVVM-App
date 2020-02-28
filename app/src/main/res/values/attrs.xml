@@ -8,6 +8,15 @@
         <attr name="rightDrawable" format="reference"/>
         <attr name="rightText" format="string"/>
     </declare-styleable>
-
+    <declare-styleable name="OtpView">
+        <attr format="integer" name="itemCount"/>
+        <attr format="integer" name="lineEndColor"/>
+        <attr format="integer" name="lineStartColor"/>
+        <attr format="integer" name="dashColor"/>
+        <attr format="integer" name="lineCount"/>
+        <attr format="float" name="dashLength"/>
+        <attr format="float" name="spaceLength"/>
+        <attr format="boolean" name="showDash"/>
+    </declare-styleable>
 
 </resources>

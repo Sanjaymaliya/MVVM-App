@@ -3,6 +3,9 @@
     <string name="verify_your_number">Verify Your Number</string>
     <string name="phone_number">Phone Number</string>
     <string name="continue_">Continue</string>
+    <string name="verify_otp">Verify Otp</string>
     <string name="phone_number_error">Please enter phone number</string>
     <string name="phone_number_valid_phone_number">Please enter valid phone number</string>
+    <string name="OTP_has_been_sent_to_you_on_your_mobile_phone_please_enter_it_below">OTP has been sent to you on your mobile phone. Please enter it below</string>
+    <string name="enter_otp">Enter Otp...</string>
 </resources>

@@ -1,9 +1,11 @@
 package com.e.app.extensions
 
+import android.content.Context
 import android.view.View
 import android.view.View.*
 import android.widget.TextView
 import androidx.annotation.IdRes
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 
 
@@ -53,3 +55,6 @@ fun View.disable() {
 fun TextView.htmlCompat(str: String) {
     this.text = HtmlCompat.fromHtml(str, HtmlCompat.FROM_HTML_MODE_LEGACY)
 }
+
+
+fun Context.fetchColor(id : Int) : Int = ContextCompat.getColor(this,id)

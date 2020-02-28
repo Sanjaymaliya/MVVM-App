@@ -12,6 +12,19 @@ object Validation {
 
         return true
     }
+    fun isOtpValid(otp: String):Boolean
+    {
+        when {
+            otp.isEmpty() -> {
+                return false
+            }
+            otp.length < 6->
+            {
+                return false
+            }
+        }
+        return true
+    }
 
 
 }
