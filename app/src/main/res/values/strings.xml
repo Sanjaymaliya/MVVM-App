@@ -8,4 +8,10 @@
     <string name="phone_number_valid_phone_number">Please enter valid phone number</string>
     <string name="OTP_has_been_sent_to_you_on_your_mobile_phone_please_enter_it_below">OTP has been sent to you on your mobile phone. Please enter it below</string>
     <string name="enter_otp">Enter Otp...</string>
+
+    <string name="rate_us">Rate Us</string>
+    <string name="share_app">Share App</string>
+    <string name="share_using">Share Application</string>
+    <string name="feedback">Feedback</string>
+    <string name="update">Check for Updates</string>
 </resources>

@@ -8,9 +8,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.e.app.databinding.ItemDashboardBinding
 import com.e.app.ui.dashboard.DashboardNavigator
+import com.e.app.ui.titleboard.TitleBoardNavigator
 
 
-class DashboarAdapater(val context: Context,  var mListener: DashboardNavigator) : RecyclerView.Adapter<DashboarAdapater.ViewHolder>() {
+class DashboarAdapater(val context: Context,  var mListener: TitleBoardNavigator) : RecyclerView.Adapter<DashboarAdapater.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val profileSelectBinding = DataBindingUtil.inflate<ItemDashboardBinding>(

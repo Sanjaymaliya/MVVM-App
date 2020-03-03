@@ -1,17 +1,18 @@
 package com.e.app.ui.dashboard
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.e.app.BR
+import com.e.app.BuildConfig
 import com.e.app.R
-import com.e.app.adapter.DashboarAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityDashboardBinding
-import com.e.app.extensions.showToast
-import com.e.app.utils.PHONE_NUMBER
 import com.e.app.utils.ViewModelProviderFactory
 import org.koin.android.ext.android.inject
+
 
 class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(),
     DashboardNavigator {
@@ -39,18 +40,33 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         super.onCreate(savedInstanceState)
         activityLoginBinding = getViewDataBinding()
         viewModel.setNavigator(this)
-        setRecyclerViewData()
     }
 
-    private fun setRecyclerViewData() {
-        viewModel.dashboarAdapater = DashboarAdapater(this@DashboardActivity, this)
-        with(activityLoginBinding!!.recyclerViewDashboard) {
+    override fun onButtonHandle(view: View) {
 
-            var linearLayoutManager = LinearLayoutManager(this@DashboardActivity)
-            activityLoginBinding!!.recyclerViewDashboard.layoutManager = linearLayoutManager
-            adapter = viewModel.dashboarAdapater
+        when (view.id) {
+            R.id.txtRateUs -> {
+                val intent = Intent("android.intent.action.VIEW")
+                intent.data =
+                    Uri.parse(BuildConfig.SERVICE_PACHAGENAME)
+                startActivity(intent)
+            }
+            R.id.txtHome -> {
+                viewModel.databaseHelper.writeTitle()
+            }
+            R.id.txtRateUs -> {
+                val sendIntent = Intent()
+                sendIntent.action = "android.intent.action.SEND"
+                sendIntent.putExtra(
+                    "android.intent.extra.TEXT",
+                    "Hey Install App at : " + BuildConfig.SERVICE_PACHAGENAME
+                )
+                sendIntent.type = "text/plain"
+                startActivity(sendIntent)
+            }
 
         }
     }
+
 
 }
