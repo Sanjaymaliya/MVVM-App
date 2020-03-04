@@ -11,11 +11,11 @@ class TitleBoardViewModel(application: Application, session: Session) :
     BaseViewModel<TitleBoardNavigator>(application, session) {
 
     lateinit var dashboarAdapater : DashboarAdapater
-
+/*
     val databaseHelper = FirebaseDatabaseHelper()
 
     fun onButtonClick(view: View) {
 
-    }
+    }*/
 
 }

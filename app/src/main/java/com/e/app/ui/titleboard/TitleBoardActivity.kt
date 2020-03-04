@@ -1,4 +1,4 @@
-package com.e.app.ui.dashboard
+package com.e.app.ui.titleboard
 
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
@@ -8,15 +8,12 @@ import com.e.app.R
 import com.e.app.adapter.DashboarAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityTitleBoardBinding
-import com.e.app.ui.titleboard.TitleBoardNavigator
-import com.e.app.ui.titleboard.TitleBoardViewModel
 import com.e.app.utils.ViewModelProviderFactory
 import org.koin.android.ext.android.inject
 
 
 class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardViewModel>(),
     TitleBoardNavigator {
-
 
     private val factory: ViewModelProviderFactory by inject()
 
