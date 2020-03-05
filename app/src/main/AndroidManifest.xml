@@ -14,9 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.titleboard.TitleBoardActivity"></activity>
+        <activity
+            android:name=".ui.titleboard.TitleBoardActivity"
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".ui.verifyotp.VerifyOtpActivity" />
-        <activity android:name=".ui.dashboard.DashboardActivity" />
+        <activity
+            android:name=".ui.dashboard.DashboardActivity"
+            android:theme="@style/AppTheme" />
         <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.splashscreen.SplashActivity">
             <intent-filter>

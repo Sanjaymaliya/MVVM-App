@@ -98,7 +98,6 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-core:17.2.2'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
-    implementation 'com.github.chaya222:AndroidOtpView:0.0.2'
     implementation 'com.google.firebase:firebase-database:19.2.1'
 }
 

@@ -10,6 +10,8 @@ import com.e.app.BuildConfig
 import com.e.app.R
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityDashboardBinding
+import com.e.app.extensions.openActivity
+import com.e.app.ui.titleboard.TitleBoardActivity
 import com.e.app.utils.ViewModelProviderFactory
 import org.koin.android.ext.android.inject
 
@@ -52,6 +54,8 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
                 startActivity(intent)
             }
             R.id.txtHome -> {
+
+                openActivity(TitleBoardActivity::class.java)
                 viewModel.databaseHelper.writeTitle()
             }
             R.id.txtRateUs -> {

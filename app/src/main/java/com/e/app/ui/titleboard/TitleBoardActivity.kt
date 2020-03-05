@@ -8,12 +8,16 @@ import com.e.app.R
 import com.e.app.adapter.DashboarAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityTitleBoardBinding
+import com.e.app.model.TitleModel
 import com.e.app.utils.ViewModelProviderFactory
 import org.koin.android.ext.android.inject
 
 
 class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardViewModel>(),
     TitleBoardNavigator {
+    override fun onSuccessData(titleList: List<TitleModel>) {
+        setRecyclerViewData(titleList)
+    }
 
     private val factory: ViewModelProviderFactory by inject()
 
@@ -38,11 +42,11 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
         super.onCreate(savedInstanceState)
         activityTitleBoardBinding = getViewDataBinding()
         viewModel.setNavigator(this)
-        setRecyclerViewData()
+        viewModel.getTitleList()
     }
 
-    private fun setRecyclerViewData() {
-        viewModel.dashboarAdapater = DashboarAdapater(this@TitleBoardActivity, this)
+    private fun setRecyclerViewData(titleList: List<TitleModel>) {
+        viewModel.dashboarAdapater = DashboarAdapater(this@TitleBoardActivity, this,titleList)
         with(activityTitleBoardBinding!!.recyclerViewTitle) {
 
             var linearLayoutManager = LinearLayoutManager(this@TitleBoardActivity)

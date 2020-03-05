@@ -9,6 +9,7 @@ import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityLoginBinding
 import com.e.app.extensions.openActivity
 import com.e.app.extensions.showToast
+import com.e.app.ui.dashboard.DashboardActivity
 import com.e.app.ui.verifyotp.VerifyOtpActivity
 import com.e.app.utils.PHONE_NUMBER
 import com.e.app.utils.ViewModelProviderFactory
@@ -58,7 +59,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
             PHONE_NUMBER,
             activityLoginBinding!!.ccpLoginCountry.selectedCountryCodeWithPlus + activityLoginBinding!!.tiMobile.text.toString().trim()
         )
-        openActivity(VerifyOtpActivity::class.java, bundle)
+        //openActivity(VerifyOtpActivity::class.java, bundle)
+        openActivity(DashboardActivity::class.java)
         finish()
     }
 
