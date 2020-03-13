@@ -26,4 +26,8 @@ class TitleBoardViewModel(application: Application, session: Session) :
         })
     }
 
+    fun onItemClick(model:Any){
+        getNavigator()?.onItemClick(model)
+    }
+
 }

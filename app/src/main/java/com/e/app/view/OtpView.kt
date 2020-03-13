@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.ViewCompat
 import com.e.app.R
-import com.poonam.androidotpview.helpers.fetchColor
+import com.e.app.extensions.fetchColor
 
 
 class OtpView : AppCompatEditText {
@@ -113,14 +113,14 @@ class OtpView : AppCompatEditText {
         // if pos is selected or less then that
             if (next < 0 || i == 0) {
                 mLinesPaint!!.strokeWidth = mLineStrokeSelected
-                mLinesPaint!!.color = context.fetchColor(R.color.white)
+                mLinesPaint!!.color = context.fetchColor(R.color.colorWhite)
                 mLinesPaint!!.shader =
                     LinearGradient(x1, y1, x2, y2, lineStartColor, lineEndColor, Shader.TileMode.MIRROR)
 
             } else {
                 mLinesPaint!!.strokeWidth = mLineStroke
                 mLinesPaint!!.shader = null
-                mLinesPaint!!.color = context.fetchColor(R.color.grey)
+                mLinesPaint!!.color = context.fetchColor(R.color.colorGrey40)
             }
     }
 
@@ -171,7 +171,7 @@ class OtpView : AppCompatEditText {
         if (drawCursor) {
             val fm = paint.fontMetrics
             val height = fm.descent - fm.ascent + fm.leading
-            paint.color = context.fetchColor(R.color.black)
+            paint.color = context.fetchColor(R.color.colorBlack)
             paint.strokeWidth = 4f
             //canvas.drawLine(cx, cy, cx, cy - mCharSize / 2, paint)
             canvas.drawLine(x1, y1, x1, y1 - height, paint)
@@ -285,7 +285,7 @@ class OtpView : AppCompatEditText {
         mLineStrokeSelected = convertToPx(mLineStrokeSelected)
         mLinesPaint = Paint(paint)
         mLinesPaint!!.strokeWidth = mLineStroke
-        setHintTextColor(context.fetchColor(R.color.black))
+        setHintTextColor(context.fetchColor(R.color.colorBlack))
     }
 
     private fun initVariousParam(attrs: AttributeSet) {
@@ -372,10 +372,10 @@ class OtpView : AppCompatEditText {
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val widthMode = View.MeasureSpec.getMode(widthMeasureSpec)
-        val heightMode = View.MeasureSpec.getMode(heightMeasureSpec)
-        val widthSize = View.MeasureSpec.getSize(widthMeasureSpec)
-        val heightSize = View.MeasureSpec.getSize(heightMeasureSpec)
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+        val widthSize = MeasureSpec.getSize(widthMeasureSpec)
+        val heightSize = MeasureSpec.getSize(heightMeasureSpec)
         val width: Int
         val height: Int
         val fm = paint.fontMetrics

@@ -34,7 +34,6 @@
             style="@style/TextViewStyle"
             android:text="@string/app_name"
             android:onClick="@{()->viewModel.onButtonClick(txtHome)}"
-            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -80,7 +79,7 @@
 
         <TextView
             android:id="@+id/txtRateUs"
-            android:onClick="@{()->viewModel.onButtonClick(txtHome)}"
+            android:onClick="@{()->viewModel.onButtonClick(txtRateUs)}"
             style="@style/TextViewStyle"
             android:text="@string/rate_us"
             app:layout_constraintStart_toStartOf="@id/txtHome"

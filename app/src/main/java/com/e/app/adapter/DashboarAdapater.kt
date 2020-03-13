@@ -44,6 +44,11 @@ class DashboarAdapater(val context: Context,  var mListener: TitleBoardNavigator
             Log.e("Colocr",""+titleList[position].color)
             itemDashboardBinding.txtTitle.setTextColor(Color.parseColor(titleList[position].color.toString()))
             itemDashboardBinding.executePendingBindings()
+            itemDashboardBinding.layoutTitle.setOnClickListener {
+                mListener.onItemClick(titleList[position])
+              //  itemDashboardBinding.viewModel?.onItemClick(titleList[position])
+
+            }
         }
 
     }

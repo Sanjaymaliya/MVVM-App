@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
+
 class FirebaseDatabaseHelper {
 
     private val database = FirebaseDatabase.getInstance()
@@ -17,15 +18,16 @@ class FirebaseDatabaseHelper {
     fun writeTitle() {
 
         val key = firebaseDatabaseReference.push().key
-        firebaseDatabaseReference.child(key!!).setValue(TitleModel("Live","#D81B60","1"))
+        firebaseDatabaseReference.child(key!!).setValue(TitleModel("Live", "#D81B60", "1"))
 
     }
 
-    fun readAppointments(status : DataStatus) {
+    fun readAppointments(status: DataStatus) {
         firebaseDatabaseReference.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
                 Log.w("DATABASE_ERROR", "Error while reading appointments", error.toException())
             }
+
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 titleModelList.clear()
                 for (data in dataSnapshot.children) {
@@ -41,7 +43,7 @@ class FirebaseDatabaseHelper {
 
     interface DataStatus {
 
-        fun DataIsLoaded(appointments : List<TitleModel>)
+        fun DataIsLoaded(appointments: List<TitleModel>)
         fun DataIsInserted()
     }
 

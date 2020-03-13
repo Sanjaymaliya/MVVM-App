@@ -13,13 +13,20 @@ import com.e.app.databinding.ActivityDashboardBinding
 import com.e.app.extensions.openActivity
 import com.e.app.ui.titleboard.TitleBoardActivity
 import com.e.app.utils.ViewModelProviderFactory
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.reward.RewardItem
+import com.google.android.gms.ads.reward.RewardedVideoAd
+import com.google.android.gms.ads.reward.RewardedVideoAdListener
 import org.koin.android.ext.android.inject
 
 
 class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewModel>(),
-    DashboardNavigator {
+    DashboardNavigator, RewardedVideoAdListener {
 
     private val factory: ViewModelProviderFactory by inject()
+
+    private lateinit var mRewardedVideoAd: RewardedVideoAd
 
     override val viewModel: DashboardViewModel
         get() = ViewModelProviders.of(this, factory).get(DashboardViewModel::class.java)
@@ -42,6 +49,11 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
         super.onCreate(savedInstanceState)
         activityLoginBinding = getViewDataBinding()
         viewModel.setNavigator(this)
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544/5224354917")
+        mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this)
+        mRewardedVideoAd.rewardedVideoAdListener = this
+
+        loadRewardedVideoAd()
     }
 
     override fun onButtonHandle(view: View) {
@@ -56,9 +68,14 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
             R.id.txtHome -> {
 
                 openActivity(TitleBoardActivity::class.java)
-                viewModel.databaseHelper.writeTitle()
+                //viewModel.databaseHelper.writeTitle()
             }
             R.id.txtRateUs -> {
+
+                if (mRewardedVideoAd.isLoaded) {
+                    mRewardedVideoAd.show()
+                }
+
                 val sendIntent = Intent()
                 sendIntent.action = "android.intent.action.SEND"
                 sendIntent.putExtra(
@@ -70,6 +87,35 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
             }
 
         }
+    }
+    private fun loadRewardedVideoAd() {
+        mRewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917",
+            AdRequest.Builder().build())
+    }
+
+    override fun onRewardedVideoAdClosed() {
+
+    }
+
+    override fun onRewardedVideoAdLeftApplication() {
+    }
+
+    override fun onRewardedVideoAdLoaded() {
+    }
+
+    override fun onRewardedVideoAdOpened() {
+    }
+
+    override fun onRewardedVideoCompleted() {
+    }
+
+    override fun onRewarded(p0: RewardItem?) {
+    }
+
+    override fun onRewardedVideoStarted() {
+    }
+
+    override fun onRewardedVideoAdFailedToLoad(p0: Int) {
     }
 
 

@@ -6,5 +6,5 @@ interface TitleBoardNavigator : BaseNavigator {
 
     fun onSuccessData(titleList: List<TitleModel>)
 
-
+    fun onItemClick(model: Any)
 }
