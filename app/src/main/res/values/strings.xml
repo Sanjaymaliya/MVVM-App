@@ -14,4 +14,6 @@
     <string name="share_using">Share Application</string>
     <string name="feedback">Feedback</string>
     <string name="update">Check for Updates</string>
+
+    <string name="join_contest">Join Contest</string>
 </resources>

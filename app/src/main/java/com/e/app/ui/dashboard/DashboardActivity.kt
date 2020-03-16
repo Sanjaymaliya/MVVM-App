@@ -70,7 +70,11 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
                 openActivity(TitleBoardActivity::class.java)
                 //viewModel.databaseHelper.writeTitle()
             }
-            R.id.txtRateUs -> {
+            R.id.txtUpdate -> {
+                viewModel.databaseHelper.writeContest("SOLO")
+            }
+
+            R.id.txtFeedback -> {
 
                 if (mRewardedVideoAd.isLoaded) {
                     mRewardedVideoAd.show()

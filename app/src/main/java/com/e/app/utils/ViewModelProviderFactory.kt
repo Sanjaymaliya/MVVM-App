@@ -3,6 +3,7 @@ package com.e.app.utils
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.e.app.ui.contest.JoinContestViewModel
 import com.e.app.ui.dashboard.DashboardViewModel
 import com.e.app.ui.login.LoginViewModel
 import com.e.app.ui.splashscreen.SplashViewModel
@@ -24,6 +25,7 @@ class ViewModelProviderFactory(application: Application,  session: Session) :
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel(application,  session) as T
             modelClass.isAssignableFrom(VerifyOtpViewModel::class.java) -> VerifyOtpViewModel(application,  session) as T
             modelClass.isAssignableFrom(TitleBoardViewModel::class.java) -> TitleBoardViewModel(application,  session) as T
+            modelClass.isAssignableFrom(JoinContestViewModel::class.java) -> JoinContestViewModel(application,  session) as T
 
 
 

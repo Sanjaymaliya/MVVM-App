@@ -1,6 +1,5 @@
 package com.e.app.ui.titleboard
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProviders
@@ -10,9 +9,12 @@ import com.e.app.R
 import com.e.app.adapter.DashboarAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityTitleBoardBinding
-import com.e.app.model.TitleModel
-import com.e.app.utils.RequestPermission
+import com.e.app.extensions.openActivity
+import com.e.app.model.ContentAmount
+import com.e.app.model.TypesDatum
+import com.e.app.ui.contest.JoinContestActivity
 import com.e.app.utils.ViewModelProviderFactory
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.android.inject
 
 
@@ -20,7 +22,7 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
     TitleBoardNavigator {
 
 
-    override fun onSuccessData(titleList: List<TitleModel>) {
+    override fun onSuccessData(titleList: List<TypesDatum>) {
         setRecyclerViewData(titleList)
     }
 
@@ -47,10 +49,10 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
         super.onCreate(savedInstanceState)
         activityTitleBoardBinding = getViewDataBinding()
         viewModel.setNavigator(this)
-        viewModel.getTitleList()
+        viewModel.getGameType(this)
     }
 
-    private fun setRecyclerViewData(titleList: List<TitleModel>) {
+    private fun setRecyclerViewData(titleList: List<TypesDatum>) {
         viewModel.dashboarAdapater = DashboarAdapater(this@TitleBoardActivity, this, titleList)
         with(activityTitleBoardBinding!!.recyclerViewTitle) {
 
@@ -62,42 +64,19 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
     }
 
     override fun onItemClick(model: Any) {
-        var mModel = model as TitleModel
+        var mModel = model as TypesDatum
         Log.e("Title Desh", "" + mModel.name)
-        openRequestPermission()
+        var currentUser = FirebaseAuth.getInstance().currentUser
+       // viewModel.getGameTypeJoin(currentUser!!.uid,mModel.name!!)
+        openActivity(JoinContestActivity::class.java)
     }
 
-    private fun openRequestPermission() {
-        if (requestPermission!!.checkPermission(RequestPermission.PERMISSION_WRITE_STORAGE) && requestPermission!!.checkPermission(RequestPermission.PERMISSION_READ_STORAGE)) {
-            getFileFromStorage()
-        } else {
-            requestPermission!!.permissionRequestShow(
-                object : RequestPermission.PermissionCallBack {
-                    override fun callBack(grantAllPermission: Boolean, deniedAllPermission: Boolean, permissionResultList: List<Boolean>) {
-                        if (grantAllPermission) getFileFromStorage()
-                    }
-                },RequestPermission.PERMISSION_WRITE_STORAGE, RequestPermission.PERMISSION_READ_STORAGE
-            )
-        }
+    override fun onGameJoinContentSuccess(titleList: List<ContentAmount>) {
+        Log.e("Response ->"," Size " +titleList.size)
     }
 
-    fun getFileFromStorage() {
-        var intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "*/*"
-        startActivityForResult(intent, 7)
+    override fun onResponseFail() {
+       Log.e("Response ->","Data Not Found")
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            7 -> {
-                if (resultCode == RESULT_OK) {
-                    val PathHolder = data!!.data!!.path
-                    Log.e("File Pathe", "" + PathHolder)
-                }
-
-
-            }
-        }
-    }
 }

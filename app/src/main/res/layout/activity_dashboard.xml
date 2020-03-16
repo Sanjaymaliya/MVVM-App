@@ -50,6 +50,7 @@
             android:id="@+id/txtFeedback"
             style="@style/TextViewStyle"
             android:text="@string/feedback"
+            android:onClick="@{()->viewModel.onButtonClick(txtFeedback)}"
             app:layout_constraintStart_toStartOf="@id/txtHome"
             app:layout_constraintTop_toBottomOf="@+id/view1" />
 
@@ -96,6 +97,7 @@
         <TextView
             android:id="@+id/txtUpdate"
             style="@style/TextViewStyle"
+            android:onClick="@{()->viewModel.onButtonClick(txtUpdate)}"
             android:text="@string/update"
             app:layout_constraintStart_toStartOf="@id/txtHome"
             app:layout_constraintTop_toBottomOf="@+id/view4" />

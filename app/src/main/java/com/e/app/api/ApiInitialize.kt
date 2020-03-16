@@ -1,13 +1,12 @@
 package com.e.app.api
 
 
+import com.e.app.BuildConfig.SERVICE_ENDPOINT
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-
-
 
 
 object ApiInitialize {
@@ -23,15 +22,15 @@ object ApiInitialize {
     fun initialize(): Retrofit {
 
         val gson = GsonBuilder()
-                .setLenient()
-                .create()
+            .setLenient()
+            .create()
 
         if (ApiInitialize.retrofit == null) {
             ApiInitialize.retrofit = Retrofit.Builder()
-                    .baseUrl(WebConstant.BASEURL)
-                    .client(ApiInitialize.requestHeader)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .build()
+                .baseUrl(SERVICE_ENDPOINT)
+                .client(ApiInitialize.requestHeader)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
         }
 
         return ApiInitialize.retrofit!!
@@ -41,15 +40,15 @@ object ApiInitialize {
     fun initializes(): ApiInterface {
 
         val gson = GsonBuilder()
-                .setLenient()
-                .create()
+            .setLenient()
+            .create()
 
 
         retrofit = Retrofit.Builder()
-                .baseUrl(WebConstant.BASEURL)
-                .client(requestHeader)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
+            .baseUrl(SERVICE_ENDPOINT)
+            .client(requestHeader)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
         apiInIt = retrofit!!.create(ApiInterface::class.java)
         return apiInIt
     }
@@ -58,14 +57,14 @@ object ApiInitialize {
     fun initialize(baseUrl: String): ApiInterface {
 
         val gson = GsonBuilder()
-                .setLenient()
-                .create()
+            .setLenient()
+            .create()
 
         retrofit = Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .client(requestHeader)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build()
+            .baseUrl(baseUrl)
+            .client(requestHeader)
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
         apiInIt = retrofit!!.create(ApiInterface::class.java)
         return apiInIt
     }
@@ -75,9 +74,9 @@ object ApiInitialize {
         get() {
 
             return OkHttpClient.Builder()
-                    .readTimeout(60, TimeUnit.SECONDS)
-                    .connectTimeout(60, TimeUnit.SECONDS)
-                    .build()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build()
         }
 
 }

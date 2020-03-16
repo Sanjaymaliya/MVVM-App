@@ -59,8 +59,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
             PHONE_NUMBER,
             activityLoginBinding!!.ccpLoginCountry.selectedCountryCodeWithPlus + activityLoginBinding!!.tiMobile.text.toString().trim()
         )
-        //openActivity(VerifyOtpActivity::class.java, bundle)
-        openActivity(DashboardActivity::class.java)
+        openActivity(VerifyOtpActivity::class.java, bundle)
+        //openActivity(DashboardActivity::class.java)
         finish()
     }
 
