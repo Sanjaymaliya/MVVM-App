@@ -21,20 +21,6 @@ class TitleBoardViewModel(application: Application, session: Session) :
 
     val databaseHelper = FirebaseDatabaseHelper()
 
-    fun getGameTypeJoin(uId:String,Type:String)
-    {
-        databaseHelper.readUserAmount(databaseHelper, object : FirebaseDatabaseHelper.DataStatus {
-            override fun DataIsLoaded(titleList: List<Any>) {
-                getNavigator()?.onGameJoinContentSuccess( titleList as ArrayList<ContentAmount>)
-            }
-            override fun DataIsInserted() {}
-
-            override fun onError() {
-                getNavigator()?.onResponseFail()
-            }
-
-        },uId,Type)
-    }
 
     fun getGameType(context:Context)
     {

@@ -11,7 +11,7 @@ import com.e.app.model.ContestModel
 import com.e.app.ui.contest.JoinContestNavigator
 
 
-class JoinContestAdapater(val context: Context, var mListener: JoinContestNavigator, var titleList: List<ContestModel>) : RecyclerView.Adapter<JoinContestAdapater.ViewHolder>() {
+class JoinContestAdapater(val context: Context, var mListener: JoinContestNavigator, var joinContestList: List<ContestModel>,var amountPay:Int) : RecyclerView.Adapter<JoinContestAdapater.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemJoincontestBinding = DataBindingUtil.inflate<ItemJoincontestBinding>(
@@ -25,7 +25,7 @@ class JoinContestAdapater(val context: Context, var mListener: JoinContestNaviga
     }
 
     override fun getItemCount(): Int {
-        return titleList.size
+        return joinContestList.size
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -36,13 +36,28 @@ class JoinContestAdapater(val context: Context, var mListener: JoinContestNaviga
 
         fun bind(position: Int) {
 
-            itemJoincontestBinding.txtDate.text= titleList[position].dateTime
-            itemJoincontestBinding.txtMapName.text= titleList[position].map
-            itemJoincontestBinding.txtTypeName.text= titleList[position].type
-            itemJoincontestBinding.txtWinFee.text= titleList[position].winAmount
-            itemJoincontestBinding.txtEntryFee.text= titleList[position].price
+            itemJoincontestBinding.txtDate.text= joinContestList[position].dateTime
+            itemJoincontestBinding.txtMapName.text= joinContestList[position].map
+            itemJoincontestBinding.txtTypeName.text= joinContestList[position].type
+            itemJoincontestBinding.txtWinFee.text= joinContestList[position].winAmount
+            itemJoincontestBinding.txtEntryFee.text= joinContestList[position].price
 
+            if(amountPay==0)
+            {
+                itemJoincontestBinding.btnJoinContest.isEnabled=false
+                itemJoincontestBinding.btnJoinContest.isClickable=false
+                itemJoincontestBinding.btnJoinContest.text="All Ready Join"
+            }
+
+            itemJoincontestBinding.btnJoinContest.setOnClickListener {
+                mListener.onItemClick(joinContestList[position])
+            }
         }
 
+    }
+    fun setAmountFlag(flag:Int)
+    {
+        amountPay=flag
+        notifyDataSetChanged()
     }
 }

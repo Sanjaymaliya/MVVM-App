@@ -23,7 +23,7 @@ class FirebaseDatabaseHelper {
 
     var zone1Ref = firebaseDatabaseReferenceContest.child("solo")
 
-    private val titleModelList = mutableListOf<ContentAmount>()
+    private val contentAmountList = mutableListOf<ContentAmount>()
 
     private val titleModelList1 = mutableListOf<ContestModel>()
 
@@ -83,47 +83,29 @@ class FirebaseDatabaseHelper {
             })
     }
 
+    fun readUserAmount(status: DataStatus, uId: String, Type: String) {
 
-    fun readAppointments(status: DataStatus) {
-        firebaseDatabaseReferenceContest.addValueEventListener(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("DATABASE_ERROR", "Error while reading appointments", error.toException())
-            }
+        firebaseDatabaseReferenceAmount.child(uId).child(Type)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val contentAmount: ContentAmount? =
+                        dataSnapshot.getValue<ContentAmount>(ContentAmount::class.java) as ContentAmount?
+                    if (contentAmount == null) {
+                        status.onError()
+                    }
+                    else
+                    {
+                        contentAmountList.add(contentAmount)
+                        status.DataIsLoaded(contentAmountList)
+                    }
 
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                titleModelList1.clear()
-                for (data in dataSnapshot.children) {
-                    titleModelList1.add(data.getValue(ContestModel::class.java)!!)
                 }
 
-                status.DataIsLoaded(titleModelList1)
-            }
-
-        })
-    }
-
-
-    fun readUserAmount(
-        firebaseDatabaseHelper: FirebaseDatabaseHelper,
-        status: DataStatus, uId: String, Type: String
-    ) {
-
-        firebaseDatabaseHelper.firebaseDatabaseReferenceAmount.child(uId).child(Type)
-            .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(error: DatabaseError) {
                     status.onError()
                 }
-
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    firebaseDatabaseHelper.titleModelList.clear()
-                    for (data in dataSnapshot.children) {
-                        firebaseDatabaseHelper.titleModelList.add(data.getValue(ContentAmount::class.java)!!)
-                    }
-
-                    status.DataIsLoaded(firebaseDatabaseHelper.titleModelList)
-                }
-
             })
+
     }
 
     fun addUserChangeListener() {

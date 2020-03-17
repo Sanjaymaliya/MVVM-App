@@ -1,6 +1,7 @@
 package com.e.app.ui.contest
 
 import com.e.app.base.BaseNavigator
+import com.e.app.model.ContentAmount
 import com.e.app.model.ContestModel
 
 interface JoinContestNavigator : BaseNavigator {
@@ -10,5 +11,11 @@ interface JoinContestNavigator : BaseNavigator {
     fun onItemClick(model: Any)
 
     fun onResponseFail()
+
+    fun onPaymentSuccess()
+
+    fun onPaymentFail()
+
+    fun onGameJoinContentSuccess(titleList: List<ContentAmount>)
 
 }
