@@ -2,9 +2,10 @@ package com.e.app.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
-class GameType  {
+class GameType: Serializable {
     @SerializedName("status")
     @Expose
     var status: String? = null

@@ -71,7 +71,7 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
                 //viewModel.databaseHelper.writeTitle()
             }
             R.id.txtUpdate -> {
-                viewModel.databaseHelper.writeContest("SOLO")
+                viewModel.databaseHelper.writeContest("solo")
             }
 
             R.id.txtFeedback -> {

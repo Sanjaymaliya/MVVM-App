@@ -3,12 +3,14 @@ package com.e.app.ui.contest
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.e.app.BR
 import com.e.app.R
 import com.e.app.adapter.JoinContestAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityJoinContestBinding
 import com.e.app.model.ContestModel
+import com.e.app.model.TypesDatum
 import com.e.app.utils.ViewModelProviderFactory
 import org.koin.android.ext.android.inject
 
@@ -39,7 +41,13 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
         super.onCreate(savedInstanceState)
         activityJoinContestBinding = getViewDataBinding()
         viewModel.setNavigator(this)
-        viewModel.getContest("SOLO")
+        intent.extras?.run {
+            var mModel = getSerializable("Type") as TypesDatum
+            viewModel.getContest(mModel.name!!.toLowerCase())
+            activityJoinContestBinding!!.txtGameName.text= mModel.name!!
+            Glide.with(this@JoinContestActivity).load(mModel.featuredImage).into(activityJoinContestBinding!!.imgGame);
+
+        }
     }
 
     private fun setRecyclerViewData(titleList: List<ContestModel>) {

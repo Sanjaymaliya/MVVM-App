@@ -67,8 +67,14 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
         var mModel = model as TypesDatum
         Log.e("Title Desh", "" + mModel.name)
         var currentUser = FirebaseAuth.getInstance().currentUser
-       // viewModel.getGameTypeJoin(currentUser!!.uid,mModel.name!!)
-        openActivity(JoinContestActivity::class.java)
+
+       // viewModel.databaseHelper.writeAmount(currentUser!!.uid,mModel.name!!.toLowerCase())
+
+        //viewModel.databaseHelper.addUserChangeListener()
+        //viewModel.getGameTypeJoin(currentUser!!.uid,mModel.name!!.toLowerCase())
+        var bundle=Bundle()
+        bundle.putSerializable("Type",mModel!!)
+        openActivity(JoinContestActivity::class.java,bundle)
     }
 
     override fun onGameJoinContentSuccess(titleList: List<ContentAmount>) {

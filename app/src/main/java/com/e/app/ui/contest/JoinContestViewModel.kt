@@ -20,8 +20,6 @@ class JoinContestViewModel(application: Application, session: Session) :
         databaseHelper.readContest(object : FirebaseDatabaseHelper.DataStatus {
             override fun DataIsLoaded(titleList: List<Any>) {
                getNavigator()?.onSuccessData(titleList as ArrayList<ContestModel>)
-                var modl=titleList as ArrayList<ContestModel>
-                Log.e("Nish ->",""+modl.size)
             }
 
             override fun DataIsInserted() {}

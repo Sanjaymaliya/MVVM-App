@@ -1,6 +1,8 @@
 package com.e.app.database
 
+import android.content.Intent
 import android.util.Log
+import android.widget.Toast
 import com.e.app.model.ContentAmount
 import com.e.app.model.ContestModel
 import com.google.firebase.database.DataSnapshot
@@ -19,6 +21,8 @@ class FirebaseDatabaseHelper {
 
     private val firebaseDatabaseReferenceContest = database.getReference("Contest")
 
+    var zone1Ref = firebaseDatabaseReferenceContest.child("solo")
+
     private val titleModelList = mutableListOf<ContentAmount>()
 
     private val titleModelList1 = mutableListOf<ContestModel>()
@@ -31,13 +35,21 @@ class FirebaseDatabaseHelper {
         var cont = ContestModel()
 
         cont.dateTime = "20-03-2020 10:00:PM"
-        cont.map = "50 Rs"
-        cont.price = "500"
-        cont.type = "Erangel"
-        cont.winAmount = "TPP"
+        cont.map = "Erangel"
+        cont.price = "₹ 50"
+        cont.type = "TPP"
+        cont.winAmount = "₹ 500"
         firebaseDatabaseReferenceContest.child(type!!)
             .setValue(cont)
 
+    }
+
+
+    fun writeAmount(id:String,type: String) {
+        //val key = firebaseDatabaseReferenceContest.push().key
+
+        //ContentAmount("101","25")
+        firebaseDatabaseReferenceAmount.child(id).child(type).setValue(ContentAmount("101", "50"))
     }
 
 
@@ -49,21 +61,25 @@ class FirebaseDatabaseHelper {
     }
 
     fun readContest(status: DataStatus, Type: String) {
-        firebaseDatabaseReferenceContest.child(Type)
+        this.firebaseDatabaseReferenceContest.child(Type)
             .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val contestModel: ContestModel? =
+                        dataSnapshot.getValue<ContestModel>(ContestModel::class.java) as ContestModel?
+                    if (contestModel == null) {
+                        status.onError()
+                    }
+                    else
+                    {
+                        contestList.add(contestModel)
+                        status.DataIsLoaded(contestList)
+                    }
+
+                }
+
                 override fun onCancelled(error: DatabaseError) {
                     status.onError()
                 }
-
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    contestList.clear()
-                    for (data in dataSnapshot.children) {
-                        contestList.add(data.getValue(ContestModel::class.java)!!)
-                    }
-
-                    status.DataIsLoaded(contestList)
-                }
-
             })
     }
 
@@ -107,6 +123,31 @@ class FirebaseDatabaseHelper {
                     status.DataIsLoaded(firebaseDatabaseHelper.titleModelList)
                 }
 
+            })
+    }
+
+    fun addUserChangeListener() {
+        this.firebaseDatabaseReferenceContest.child("solo")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val udateChacker: ContestModel? =
+                        dataSnapshot.getValue<ContestModel>(ContestModel::class.java) as ContestModel?
+
+                    if (udateChacker == null) {
+                        Log.e("TAg C", "User data is null!")
+                        Log.e("Nishh ->",""+udateChacker!!.dateTime)
+                    }
+                    else
+                    {
+                        Log.e("Nishh ->",""+udateChacker!!.dateTime)
+                        Log.e("TAg C", "User data is null!")
+                    }
+
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("Cancel Data", "Failed to read user", error.toException())
+                }
             })
     }
 

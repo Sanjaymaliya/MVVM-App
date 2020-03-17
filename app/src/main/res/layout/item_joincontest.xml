@@ -30,10 +30,10 @@
 
             <TextView
                 android:id="@+id/txtDateTime"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/autourone_regular"
                 android:text="Date Time"
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +43,7 @@
                 android:id="@+id/view1"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/colorGrey10"
                 app:layout_constraintBottom_toBottomOf="@+id/txtDate"
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide2"
@@ -69,7 +70,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/autourone_regular"
+                style="@style/TextViewJoinContest"
                 android:gravity="center"
                 android:text="Map"
                 app:layout_constraintEnd_toEndOf="@+id/horizontalWeightGuide1"
@@ -78,6 +79,7 @@
 
 
             <View
+                android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/view2"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
@@ -92,7 +94,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/autourone_regular"
+                style="@style/TextViewJoinContest"
                 android:gravity="center"
                 android:text="Mode"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/autourone_regular"
+                style="@style/TextViewJoinContest"
                 android:text=""
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -116,9 +118,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/autourone_regular"
                 android:gravity="center"
                 android:text="Hlloo"
+                style="@style/TextViewJoinContest"
                 app:layout_constraintEnd_toEndOf="@+id/horizontalWeightGuide1"
                 app:layout_constraintStart_toStartOf="@+id/horizontalWeightGuide2"
                 app:layout_constraintTop_toBottomOf="@+id/txtMap" />
@@ -128,7 +130,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:fontFamily="@font/autourone_regular"
+                style="@style/TextViewJoinContest"
                 android:gravity="center"
                 android:text="Type"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -153,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="Wining Fee"
-                android:textSize="@dimen/_12sdp"
+                style="@style/TextViewJoinContest"
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
@@ -163,8 +165,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                style="@style/TextViewJoinContest"
                 android:text="Entry Fee"
-                android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -174,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="Wining Fee"
-                android:textSize="@dimen/_12sdp"
+                style="@style/TextViewJoinContest"
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtWin" />
@@ -184,8 +186,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                style="@style/TextViewJoinContest"
                 android:text="Entry Fee"
-                android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEntry" />
 
@@ -194,12 +196,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:fontFamily="@font/autourone_regular"
                 android:paddingStart="@dimen/_38sdp"
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_38sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/join_contest"
                 android:textAllCaps="false"
+                android:textSize="@dimen/_12ssp"
                 android:textColor="@color/colorWhite"
                 android:theme="@style/Theme.MaterialComponents.Light"
                 app:backgroundTint="@color/colorPrimary"
