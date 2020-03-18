@@ -19,7 +19,6 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -126,8 +125,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_25sdp"
                 android:onClick="@{()->viewModel.onRegisterButtonClick()}"
-                android:paddingTop="@dimen/_10sdp"
                 android:paddingStart="@dimen/_38sdp"
+                android:paddingTop="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_38sdp"
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/continue_"

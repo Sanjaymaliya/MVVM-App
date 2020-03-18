@@ -24,11 +24,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_5sdp">
+            android:layout_height="match_parent">
 
             <TextView
+                android:paddingStart="@dimen/_10sdp"
                 android:id="@+id/txtDateTime"
                 style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
@@ -67,10 +66,10 @@
 
             <TextView
                 android:id="@+id/txtMap"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/TextViewJoinContest"
                 android:gravity="center"
                 android:text="Map"
                 app:layout_constraintEnd_toEndOf="@+id/horizontalWeightGuide1"
@@ -79,10 +78,10 @@
 
 
             <View
-                android:layout_marginTop="@dimen/_5sdp"
                 android:id="@+id/view2"
                 android:layout_width="1dp"
                 android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/colorGrey10"
                 app:layout_constraintBottom_toBottomOf="@+id/txtMapName"
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide1"
@@ -91,10 +90,10 @@
 
             <TextView
                 android:id="@+id/txtType"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/TextViewJoinContest"
                 android:gravity="center"
                 android:text="Mode"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,11 +102,12 @@
 
 
             <TextView
+                android:paddingStart="@dimen/_10sdp"
                 android:id="@+id/txtDate"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/TextViewJoinContest"
                 android:text=""
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide2"
                 app:layout_constraintStart_toStartOf="parent"
@@ -115,22 +115,22 @@
 
             <TextView
                 android:id="@+id/txtMapName"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
                 android:text="Hlloo"
-                style="@style/TextViewJoinContest"
                 app:layout_constraintEnd_toEndOf="@+id/horizontalWeightGuide1"
                 app:layout_constraintStart_toStartOf="@+id/horizontalWeightGuide2"
                 app:layout_constraintTop_toBottomOf="@+id/txtMap" />
 
             <TextView
                 android:id="@+id/txtTypeName"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/TextViewJoinContest"
                 android:gravity="center"
                 android:text="Type"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -151,42 +151,42 @@
 
             <TextView
                 android:id="@+id/txtWin"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="Wining Fee"
-                style="@style/TextViewJoinContest"
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
             <TextView
                 android:id="@+id/txtEntry"
+                style="@style/TextViewJoinContest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/TextViewJoinContest"
                 android:text="Entry Fee"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
             <TextView
                 android:id="@+id/txtWinFee"
+                style="@style/TextViewJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="Wining Fee"
-                style="@style/TextViewJoinContest"
                 app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtWin" />
 
             <TextView
                 android:id="@+id/txtEntryFee"
+                style="@style/TextViewJoinContest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                style="@style/TextViewJoinContest"
                 android:text="Entry Fee"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEntry" />
@@ -203,13 +203,112 @@
                 android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/join_contest"
                 android:textAllCaps="false"
-                android:textSize="@dimen/_12ssp"
                 android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_12ssp"
                 android:theme="@style/Theme.MaterialComponents.Light"
                 app:backgroundTint="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEntryFee" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:id="@+id/layoutRoomId"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnJoinContest">
+
+                <TextView
+                    android:paddingStart="@dimen/_10sdp"
+                    android:id="@+id/txtRoom"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Room Id"
+                    android:textColor="@color/colorWhite"
+                    style="@style/TextViewJoinContest"
+                    app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:background="@color/colorGrey10"
+                    app:layout_constraintBottom_toBottomOf="@+id/txtRoomId"
+                    app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/horizontalWeightGuide3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.50" />
+
+                <TextView
+                    android:paddingStart="@dimen/_10sdp"
+                    android:id="@+id/txtPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Password"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textColor="@color/colorWhite"
+                    style="@style/TextViewJoinContest"
+                    app:layout_constraintStart_toStartOf="@+id/horizontalWeightGuide3"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:id="@+id/txtRoomId"
+                    style="@style/TextViewJoinContest"
+                    android:layout_width="0dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="-"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toStartOf="@+id/horizontalWeightGuide3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtRoom" />
+
+                <TextView
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:id="@+id/txtRoomPassword"
+                    style="@style/TextViewJoinContest"
+                    android:layout_width="0dp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="-"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/horizontalWeightGuide3"
+                    app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
+
+                <TextView
+                    app:layout_constraintTop_toBottomOf="@+id/txtRoomId"
+                    android:layout_width="wrap_content"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="@color/colorWhite"
+                    android:text="@string/room_id_and_password_will_be_shared_before_mins_of_game_start_time"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    app:layout_constraintStart_toStartOf="@+id/txtRoomId"
+                    style="@style/TextViewJoinContest"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:layout_height="wrap_content"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -55,18 +55,19 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
         intent.extras?.run {
             showProgress()
             viewModel.mModel = getSerializable("Type") as TypesDatum
-            viewModel.getContest(viewModel.mModel.name!!.toLowerCase())
             var currentUser = FirebaseAuth.getInstance().currentUser
             viewModel.getGameTypeJoin(currentUser!!.uid, viewModel.mModel.name!!.toLowerCase())
             activityJoinContestBinding!!.txtGameName.text = viewModel.mModel.name!!
             Glide.with(this@JoinContestActivity).load(viewModel.mModel.featuredImage)
                 .into(activityJoinContestBinding!!.imgGame)
+            activityJoinContestBinding!!.toolbar.setToolbarTitle(viewModel.mModel.name!!)
         }
     }
 
     private fun setRecyclerViewData(titleList: List<ContestModel>) {
+        dismissProgress()
         viewModel.joinContestAdapater =
-            JoinContestAdapater(this@JoinContestActivity, this, titleList, 0)
+            JoinContestAdapater(this@JoinContestActivity, this, titleList,  viewModel.amountSuccess)
         with(activityJoinContestBinding!!.recyclerViewTitle) {
 
             var linearLayoutManager = LinearLayoutManager(this@JoinContestActivity)
@@ -99,9 +100,11 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
 
     override fun onGameJoinContentSuccess(titleList: List<ContentAmount>) {
         dismissProgress()
+        Log.e("Nish ->",""+titleList.size)
         if (titleList.isNotEmpty()) {
-            viewModel.joinContestAdapater.setAmountFlag(1)
+            viewModel.amountSuccess=1
         }
+        viewModel.getContest(viewModel.mModel.name!!.toLowerCase())
 
     }
 
@@ -142,9 +145,9 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
 
     override fun onPaymentSuccess(razorpayPaymentId: String?) {
         try {
-            var currentUser = FirebaseAuth.getInstance().currentUser
+
             viewModel.databaseHelper.writeAmount(
-                currentUser!!.uid,
+                viewModel.databaseHelper.currentUser!!.uid,
                 viewModel.mModel.name!!.toLowerCase()
             )
         } catch (e: Exception) {

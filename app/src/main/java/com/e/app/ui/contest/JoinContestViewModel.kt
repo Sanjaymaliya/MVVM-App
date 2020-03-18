@@ -23,6 +23,8 @@ class JoinContestViewModel(application: Application, session: Session) :
 
     lateinit var mModel: TypesDatum
 
+    var amountSuccess=0
+
     fun getContest(Type: String) {
         databaseHelper.readContest(object : FirebaseDatabaseHelper.DataStatus {
             override fun DataIsLoaded(titleList: List<Any>) {

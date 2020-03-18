@@ -5,6 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.e.app.model.ContentAmount
 import com.e.app.model.ContestModel
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -14,6 +15,8 @@ import com.google.firebase.database.ValueEventListener
 class FirebaseDatabaseHelper {
 
     private val database = FirebaseDatabase.getInstance()
+
+    var currentUser = FirebaseAuth.getInstance().currentUser
 
     private val firebaseDatabaseReference = database.getReference("TitleModel")
 
@@ -92,9 +95,11 @@ class FirebaseDatabaseHelper {
                         dataSnapshot.getValue<ContentAmount>(ContentAmount::class.java) as ContentAmount?
                     if (contentAmount == null) {
                         status.onError()
+                        Log.e("Nish Error","Erroor")
                     }
                     else
                     {
+                        Log.e("Nish SUcess",contentAmount.amount)
                         contentAmountList.add(contentAmount)
                         status.DataIsLoaded(contentAmountList)
                     }

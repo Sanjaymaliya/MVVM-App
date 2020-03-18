@@ -61,13 +61,13 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
             )
         }
 
-        if (isStatusBar) {
+        /*if (isStatusBar) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 window.decorView.systemUiVisibility =
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 window.statusBarColor = ContextCompat.getColor(this, android.R.color.transparent)
             }
-        }
+        }*/
 
         super.onCreate(savedInstanceState)
         performDataBinding()

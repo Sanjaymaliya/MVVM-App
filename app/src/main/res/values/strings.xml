@@ -16,4 +16,6 @@
     <string name="update">Check for Updates</string>
 
     <string name="join_contest">Join Contest</string>
+    <string name="tournament">Pubg\nTournament</string>
+    <string name="room_id_and_password_will_be_shared_before_mins_of_game_start_time">Room ID and password will be shared before 15 mins of game start time</string>
 </resources>

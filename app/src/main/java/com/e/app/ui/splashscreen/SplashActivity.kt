@@ -45,10 +45,12 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
         if(viewModel.isLogin())
         {
             openActivity(DashboardActivity::class.java)
+            finish()
         }
         else
         {
             openActivity(LoginActivity::class.java)
+            finish()
         }
     }
 

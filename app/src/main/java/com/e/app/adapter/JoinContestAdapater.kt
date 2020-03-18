@@ -3,6 +3,7 @@ package com.e.app.adapter
 import com.e.app.R
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -42,12 +43,14 @@ class JoinContestAdapater(val context: Context, var mListener: JoinContestNaviga
             itemJoincontestBinding.txtWinFee.text= joinContestList[position].winAmount
             itemJoincontestBinding.txtEntryFee.text= joinContestList[position].price
 
-            if(amountPay==0)
+            if(amountPay==1)
             {
+                itemJoincontestBinding.layoutRoomId.visibility= View.VISIBLE
+                itemJoincontestBinding.btnJoinContest.visibility= View.GONE
                 itemJoincontestBinding.btnJoinContest.isEnabled=false
                 itemJoincontestBinding.btnJoinContest.isClickable=false
-                itemJoincontestBinding.btnJoinContest.text="All Ready Join"
             }
+
 
             itemJoincontestBinding.btnJoinContest.setOnClickListener {
                 mListener.onItemClick(joinContestList[position])

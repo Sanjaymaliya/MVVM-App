@@ -14,7 +14,7 @@ class SplashViewModel(application: Application, session: Session) : BaseViewMode
     fun onSplashHandler() {
         Handler().postDelayed({
             getNavigator()!!.onMainScreen()
-        }, 3000)
+        }, 2000)
     }
 
     fun isLogin():Boolean
