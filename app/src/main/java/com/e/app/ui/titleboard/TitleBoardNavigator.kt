@@ -9,7 +9,6 @@ interface TitleBoardNavigator : BaseNavigator {
 
     fun onItemClick(model: Any)
 
-    fun onGameJoinContentSuccess(titleList: List<ContentAmount>)
+    fun onError()
 
-    fun onResponseFail()
 }

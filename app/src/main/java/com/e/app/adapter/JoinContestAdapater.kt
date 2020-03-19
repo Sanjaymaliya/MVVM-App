@@ -41,7 +41,7 @@ class JoinContestAdapater(val context: Context, var mListener: JoinContestNaviga
             itemJoincontestBinding.txtMapName.text= joinContestList[position].map
             itemJoincontestBinding.txtTypeName.text= joinContestList[position].type
             itemJoincontestBinding.txtWinFee.text= joinContestList[position].winAmount
-            itemJoincontestBinding.txtEntryFee.text= joinContestList[position].price
+            itemJoincontestBinding.txtEntryFee.text= "₹"+joinContestList[position].price
 
             if(amountPay==1)
             {
@@ -49,8 +49,9 @@ class JoinContestAdapater(val context: Context, var mListener: JoinContestNaviga
                 itemJoincontestBinding.btnJoinContest.visibility= View.GONE
                 itemJoincontestBinding.btnJoinContest.isEnabled=false
                 itemJoincontestBinding.btnJoinContest.isClickable=false
+                itemJoincontestBinding.txtRoomPassword.text= joinContestList[position].roomPassword
+                itemJoincontestBinding.txtRoomId.text= joinContestList[position].roomID
             }
-
 
             itemJoincontestBinding.btnJoinContest.setOnClickListener {
                 mListener.onItemClick(joinContestList[position])
@@ -58,9 +59,5 @@ class JoinContestAdapater(val context: Context, var mListener: JoinContestNaviga
         }
 
     }
-    fun setAmountFlag(flag:Int)
-    {
-        amountPay=flag
-        notifyDataSetChanged()
-    }
+
 }

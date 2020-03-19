@@ -16,11 +16,10 @@
         android:id="@+id/lyt_cv_games"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        app:cardCornerRadius="5dp">
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_7sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -191,11 +190,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEntry" />
 
-            <com.google.android.material.button.MaterialButton
+            <Button
                 android:id="@+id/btnJoinContest"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:fontFamily="@font/autourone_regular"
                 android:paddingStart="@dimen/_38sdp"
                 android:paddingTop="@dimen/_10sdp"
@@ -205,8 +204,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/_12ssp"
-                android:theme="@style/Theme.MaterialComponents.Light"
-                app:backgroundTint="@color/colorPrimary"
+                android:background="@color/colorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtEntryFee" />

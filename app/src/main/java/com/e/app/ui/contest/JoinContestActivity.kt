@@ -4,7 +4,10 @@ import android.app.Activity
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -13,11 +16,13 @@ import com.e.app.R
 import com.e.app.adapter.JoinContestAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityJoinContestBinding
+import com.e.app.extensions.NetworkUtils
 import com.e.app.extensions.getProgressDialog
+import com.e.app.extensions.showToast
 import com.e.app.model.ContentAmount
 import com.e.app.model.ContestModel
 import com.e.app.model.TypesDatum
-import com.e.app.utils.ViewModelProviderFactory
+import com.e.app.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.razorpay.Checkout
 import com.razorpay.PaymentResultListener
@@ -54,20 +59,22 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
         viewModel.setNavigator(this)
         intent.extras?.run {
             showProgress()
-            viewModel.mModel = getSerializable("Type") as TypesDatum
+            viewModel.mModel = getSerializable(TYPE_MODEL) as TypesDatum
             var currentUser = FirebaseAuth.getInstance().currentUser
             viewModel.getGameTypeJoin(currentUser!!.uid, viewModel.mModel.name!!.toLowerCase())
-            activityJoinContestBinding!!.txtGameName.text = viewModel.mModel.name!!
             Glide.with(this@JoinContestActivity).load(viewModel.mModel.featuredImage)
                 .into(activityJoinContestBinding!!.imgGame)
             activityJoinContestBinding!!.toolbar.setToolbarTitle(viewModel.mModel.name!!)
         }
+        activityJoinContestBinding!!.toolbar.setBackButtonListener(listener = View.OnClickListener {
+            onBackPressed()
+        })
     }
 
     private fun setRecyclerViewData(titleList: List<ContestModel>) {
         dismissProgress()
         viewModel.joinContestAdapater =
-            JoinContestAdapater(this@JoinContestActivity, this, titleList,  viewModel.amountSuccess)
+            JoinContestAdapater(this@JoinContestActivity, this, titleList, viewModel.amountSuccess)
         with(activityJoinContestBinding!!.recyclerViewTitle) {
 
             var linearLayoutManager = LinearLayoutManager(this@JoinContestActivity)
@@ -77,50 +84,45 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
         }
     }
 
-
     override fun onSuccessData(titleList: List<ContestModel>) {
         setRecyclerViewData(titleList)
     }
 
     override fun onItemClick(model: Any) {
         var mModel = model as ContestModel
-        startPayment(mModel.price!!)
+        termAndConditionDialog(mModel.price!!)
+
+    }
+
+    override fun onResponseFailContest() {
+        dismissProgress()
     }
 
     override fun onResponseFail() {
-    }
-
-    override fun onPaymentSuccess() {
-        Log.e("Nish ", "Sucess")
-    }
-
-    override fun onPaymentFail() {
-        Log.e("Nish ", "Fail")
+        viewModel.getContest(viewModel.mModel.name!!.toLowerCase())
     }
 
     override fun onGameJoinContentSuccess(titleList: List<ContentAmount>) {
         dismissProgress()
-        Log.e("Nish ->",""+titleList.size)
         if (titleList.isNotEmpty()) {
-            viewModel.amountSuccess=1
+            viewModel.amountSuccess = 1
         }
         viewModel.getContest(viewModel.mModel.name!!.toLowerCase())
 
     }
 
-    fun startPayment(amount: String) {
+    private fun startPayment(amount: String) {
         val activity: Activity = this
         val co = Checkout()
 
         try {
             var totalAmount = amount.toInt() * 100
             val options = JSONObject()
-            options.put("name", "Razorpay Corp")
-            options.put("description", "Demoing Charges")
-            //You can omit the image option to fetch the image from dashboard
-            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.png")
-            options.put("currency", "INR")
-            options.put("amount", totalAmount)
+            options.put(NAME, RAZORPAY_CROP)
+            options.put(DESCRIPTION, DESCRIPTION_TEXT)
+            options.put(IMAGE, IMAGE_URL)
+            options.put(CURRENCY, CURRENCY_NAME)
+            options.put(AMOUNT, totalAmount)
 
             /* val prefill = JSONObject()
              prefill.put("email", "malyasanjay43@gmail.com")
@@ -137,7 +139,7 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
 
     override fun onPaymentError(errorCode: Int, response: String?) {
         try {
-            Toast.makeText(this, "Payment failed $errorCode \n $response", Toast.LENGTH_LONG).show()
+            showToast("Payment failed $errorCode \n $response")
         } catch (e: Exception) {
             Log.e("Nish ->", "Exception in onPaymentSuccess", e)
         }
@@ -145,13 +147,12 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
 
     override fun onPaymentSuccess(razorpayPaymentId: String?) {
         try {
-
             viewModel.databaseHelper.writeAmount(
                 viewModel.databaseHelper.currentUser!!.uid,
                 viewModel.mModel.name!!.toLowerCase()
             )
         } catch (e: Exception) {
-            Toast.makeText(this, "Exception in onPaymentSuccess", Toast.LENGTH_LONG).show()
+            showToast("Exception in onPaymentSuccess")
         }
     }
 
@@ -165,5 +166,21 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
 
         com.e.app.extensions.dismissDialog(this, mProgressDialog!!)
 
+    }
+
+    private fun termAndConditionDialog(amount: String) {
+        // TODO Auto-generated method stub
+        val ctw = ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle)
+        val builder = AlertDialog.Builder(ctw)
+        builder.setMessage(getString(R.string.note_minimum_pubg_level_required_30_or_above_nhacking_is_strictly_prohibited))
+            .setPositiveButton(getString(R.string.yes)) { dialog, id ->
+                if (NetworkUtils.isNetworkAvailable(this)) {
+                    startPayment(amount)
+                }
+                else{
+                    showToast(getString(R.string.internet_error))
+                }
+
+            }.setNegativeButton(getString(R.string.cancel)) { dialog, id -> dialog.cancel() }.show()
     }
 }

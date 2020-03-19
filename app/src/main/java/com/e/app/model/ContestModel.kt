@@ -19,7 +19,12 @@ class ContestModel  {
     @SerializedName("type")
     @Expose
     var type: String? = null
-
+    @SerializedName("roomID")
+    @Expose
+    var roomID: String? = null
+    @SerializedName("roomPassword")
+    @Expose
+    var roomPassword: String? = null
 }
 
 

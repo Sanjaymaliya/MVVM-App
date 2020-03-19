@@ -56,7 +56,7 @@ class VerifyOtpViewModel(application: Application, session: Session) :
         }
 
         override fun onVerificationFailed(e: FirebaseException) {
-            getNavigator()?.otpFail(e.message!!)
+           // getNavigator()?.otpFail(e.message!!)
         }
     }
 
@@ -71,7 +71,6 @@ class VerifyOtpViewModel(application: Application, session: Session) :
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     getNavigator()?.otpSuccess()
-
                 } else {
                     getNavigator()?.otpFail("Fail")
                 }

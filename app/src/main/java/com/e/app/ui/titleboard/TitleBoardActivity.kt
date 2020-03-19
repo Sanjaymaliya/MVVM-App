@@ -2,6 +2,7 @@ package com.e.app.ui.titleboard
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.e.app.BR
@@ -10,9 +11,11 @@ import com.e.app.adapter.DashboarAdapater
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityTitleBoardBinding
 import com.e.app.extensions.openActivity
+import com.e.app.extensions.showToast
 import com.e.app.model.ContentAmount
 import com.e.app.model.TypesDatum
 import com.e.app.ui.contest.JoinContestActivity
+import com.e.app.utils.TYPE_MODEL
 import com.e.app.utils.ViewModelProviderFactory
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.android.inject
@@ -50,6 +53,10 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
         activityTitleBoardBinding = getViewDataBinding()
         viewModel.setNavigator(this)
         viewModel.getGameType(this)
+
+        activityTitleBoardBinding!!.toolbar.setBackButtonListener(listener = View.OnClickListener {
+            onBackPressed()
+        })
     }
 
     private fun setRecyclerViewData(titleList: List<TypesDatum>) {
@@ -65,23 +72,14 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
 
     override fun onItemClick(model: Any) {
         var mModel = model as TypesDatum
-        Log.e("Title Desh", "" + mModel.name)
-
         var bundle=Bundle()
-        bundle.putSerializable("Type",mModel!!)
+        bundle.putSerializable(TYPE_MODEL,mModel!!)
         openActivity(JoinContestActivity::class.java,bundle)
     }
 
-    override fun onGameJoinContentSuccess(titleList: List<ContentAmount>) {
-        if(titleList.isNotEmpty())
-        {
-
-        }
-
+    override fun onError() {
+        showToast(getString(R.string.internet_error))
     }
 
-    override fun onResponseFail() {
-       Log.e("Response ->","Data Not Found")
-    }
 
 }

@@ -12,9 +12,7 @@ interface JoinContestNavigator : BaseNavigator {
 
     fun onResponseFail()
 
-    fun onPaymentSuccess()
-
-    fun onPaymentFail()
+    fun onResponseFailContest()
 
     fun onGameJoinContentSuccess(titleList: List<ContentAmount>)
 

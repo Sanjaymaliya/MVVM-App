@@ -66,12 +66,11 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
                 startActivity(intent)
             }
             R.id.txtHome -> {
-
                 openActivity(TitleBoardActivity::class.java)
                 //viewModel.databaseHelper.writeTitle()
             }
             R.id.txtUpdate -> {
-                viewModel.databaseHelper.writeContest("solo")
+               // viewModel.databaseHelper.writeContest("duo")
             }
 
             R.id.txtFeedback -> {

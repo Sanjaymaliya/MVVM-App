@@ -34,7 +34,7 @@ class JoinContestViewModel(application: Application, session: Session) :
             override fun DataIsInserted() {}
 
             override fun onError() {
-                getNavigator()?.onResponseFail()
+                getNavigator()?.onResponseFailContest()
             }
 
         }, Type)

@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:text="@string/app_name"
-            android:textSize="@dimen/_18ssp"
             app:layout_constraintTop_toTopOf="parent"
             app:leftDrawable="@drawable/ic_back_arrow" />
 

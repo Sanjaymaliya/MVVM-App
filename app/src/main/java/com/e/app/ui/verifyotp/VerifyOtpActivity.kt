@@ -6,6 +6,7 @@ import com.e.app.BR
 import com.e.app.R
 import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityVerifyOtpBinding
+import com.e.app.extensions.NetworkUtils
 import com.e.app.extensions.openActivity
 import com.e.app.extensions.showToast
 import com.e.app.ui.dashboard.DashboardActivity
@@ -62,7 +63,14 @@ class VerifyOtpActivity : BaseActivity<ActivityVerifyOtpBinding, VerifyOtpViewMo
 
     override fun onVerifyButtonClickHandle() {
         if (isOtpValid(activityVerifyOtpBinding!!.otpView.text.toString())) {
-            viewModel.verifyCode(activityVerifyOtpBinding!!.otpView.text.toString())
+            if (NetworkUtils.isNetworkAvailable(this)) {
+                viewModel.verifyCode(activityVerifyOtpBinding!!.otpView.text.toString())
+            }
+            else
+            {
+                showToast(getString(R.string.internet_error))
+            }
+
         } else {
             showToast(getString(R.string.enter_otp))
         }

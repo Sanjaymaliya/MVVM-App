@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">App</string>
+    <string name="app_name">Pubg Tournament</string>
     <string name="verify_your_number">Verify Your Number</string>
     <string name="phone_number">Phone Number</string>
     <string name="continue_">Continue</string>
@@ -18,4 +18,9 @@
     <string name="join_contest">Join Contest</string>
     <string name="tournament">Pubg\nTournament</string>
     <string name="room_id_and_password_will_be_shared_before_mins_of_game_start_time">Room ID and password will be shared before 15 mins of game start time</string>
+    <string name="note_minimum_pubg_level_required_30_or_above_nhacking_is_strictly_prohibited">Note: Minimum PUBG level required 30 or above. Hacking/Team Up is strictly prohibited.</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="internet_error">Internet connection error</string>
+
 </resources>
