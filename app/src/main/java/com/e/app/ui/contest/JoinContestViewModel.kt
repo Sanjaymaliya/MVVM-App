@@ -1,8 +1,6 @@
 package com.e.app.ui.contest
 
-import android.app.Activity
 import android.app.Application
-import android.widget.Toast
 import com.e.app.adapter.JoinContestAdapater
 import com.e.app.base.BaseViewModel
 import com.e.app.database.FirebaseDatabaseHelper
@@ -10,9 +8,6 @@ import com.e.app.model.ContentAmount
 import com.e.app.model.ContestModel
 import com.e.app.model.TypesDatum
 import com.e.app.utils.Session
-import com.razorpay.Checkout
-import com.razorpay.PaymentResultListener
-import org.json.JSONObject
 
 class JoinContestViewModel(application: Application, session: Session) :
     BaseViewModel<JoinContestNavigator>(application, session) {
@@ -21,7 +16,9 @@ class JoinContestViewModel(application: Application, session: Session) :
 
     val databaseHelper = FirebaseDatabaseHelper()
 
-    lateinit var mModel: TypesDatum
+    var mModel: TypesDatum?=null
+
+    lateinit var mDataAmountModel: ContestModel
 
     var amountSuccess=0
 

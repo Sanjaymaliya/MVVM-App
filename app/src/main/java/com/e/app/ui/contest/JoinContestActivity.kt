@@ -3,6 +3,7 @@ package com.e.app.ui.contest
 import android.app.Activity
 import android.app.ProgressDialog
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -61,10 +62,10 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
             showProgress()
             viewModel.mModel = getSerializable(TYPE_MODEL) as TypesDatum
             var currentUser = FirebaseAuth.getInstance().currentUser
-            viewModel.getGameTypeJoin(currentUser!!.uid, viewModel.mModel.name!!.toLowerCase())
-            Glide.with(this@JoinContestActivity).load(viewModel.mModel.featuredImage)
+            viewModel.getGameTypeJoin(currentUser!!.uid, viewModel!!.mModel!!.name!!.toLowerCase())
+            Glide.with(this@JoinContestActivity).load(viewModel.mModel!!.featuredImage)
                 .into(activityJoinContestBinding!!.imgGame)
-            activityJoinContestBinding!!.toolbar.setToolbarTitle(viewModel.mModel.name!!)
+            activityJoinContestBinding!!.toolbar.setToolbarTitle(viewModel.mModel!!.name!!)
         }
         activityJoinContestBinding!!.toolbar.setBackButtonListener(listener = View.OnClickListener {
             onBackPressed()
@@ -89,8 +90,13 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
     }
 
     override fun onItemClick(model: Any) {
-        var mModel = model as ContestModel
-        termAndConditionDialog(mModel.price!!)
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return
+        }
+        mLastClickTime = SystemClock.elapsedRealtime()
+        viewModel.mDataAmountModel = model as ContestModel
+        termAndConditionDialog(viewModel.mDataAmountModel.price!!)
 
     }
 
@@ -99,7 +105,7 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
     }
 
     override fun onResponseFail() {
-        viewModel.getContest(viewModel.mModel.name!!.toLowerCase())
+        viewModel.getContest(viewModel.mModel!!.name!!.toLowerCase())
     }
 
     override fun onGameJoinContentSuccess(titleList: List<ContentAmount>) {
@@ -107,7 +113,7 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
         if (titleList.isNotEmpty()) {
             viewModel.amountSuccess = 1
         }
-        viewModel.getContest(viewModel.mModel.name!!.toLowerCase())
+        viewModel.getContest(viewModel.mModel!!.name!!.toLowerCase())
 
     }
 
@@ -149,7 +155,7 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
         try {
             viewModel.databaseHelper.writeAmount(
                 viewModel.databaseHelper.currentUser!!.uid,
-                viewModel.mModel.name!!.toLowerCase()
+                viewModel.mModel!!.name!!.toLowerCase(),viewModel.mDataAmountModel.price!!
             )
         } catch (e: Exception) {
             showToast("Exception in onPaymentSuccess")

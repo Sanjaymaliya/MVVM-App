@@ -24,11 +24,7 @@ class FirebaseDatabaseHelper {
 
     private val firebaseDatabaseReferenceContest = database.getReference("Contest")
 
-    var zone1Ref = firebaseDatabaseReferenceContest.child("solo")
-
     private val contentAmountList = mutableListOf<ContentAmount>()
-
-    private val titleModelList1 = mutableListOf<ContestModel>()
 
     private val contestList = mutableListOf<ContestModel>()
 
@@ -39,20 +35,18 @@ class FirebaseDatabaseHelper {
 
         cont.dateTime = "20-03-2020 10:00:PM"
         cont.map = "Erangel"
-        cont.price = "₹ 50"
+        cont.price = "50"
         cont.type = "TPP"
-        cont.winAmount = "₹ 500"
+        cont.winAmount = "500"
         firebaseDatabaseReferenceContest.child(type!!)
             .setValue(cont)
 
     }
 
 
-    fun writeAmount(id:String,type: String) {
-        //val key = firebaseDatabaseReferenceContest.push().key
-
-        //ContentAmount("101","25")
-        firebaseDatabaseReferenceAmount.child(id).child(type).setValue(ContentAmount("101", "50"))
+    fun writeAmount(id:String,type: String,amount:String) {
+        val key = firebaseDatabaseReferenceAmount.push().key
+        firebaseDatabaseReferenceAmount.child(id).child(type).setValue(ContentAmount(key!!, amount))
     }
 
 
@@ -74,6 +68,7 @@ class FirebaseDatabaseHelper {
                     }
                     else
                     {
+                        contestList.clear()
                         contestList.add(contestModel)
                         status.DataIsLoaded(contestList)
                     }
@@ -100,6 +95,7 @@ class FirebaseDatabaseHelper {
                     else
                     {
                         Log.e("Nish SUcess",contentAmount.amount)
+                        contentAmountList.clear()
                         contentAmountList.add(contentAmount)
                         status.DataIsLoaded(contentAmountList)
                     }

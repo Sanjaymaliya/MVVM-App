@@ -3,6 +3,7 @@ package com.e.app.ui.dashboard
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import com.e.app.BR
@@ -57,6 +58,11 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     }
 
     override fun onButtonHandle(view: View) {
+
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return
+        }
+        mLastClickTime = SystemClock.elapsedRealtime()
 
         when (view.id) {
             R.id.txtRateUs -> {

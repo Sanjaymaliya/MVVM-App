@@ -49,6 +49,8 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
 
     var requestPermission: RequestPermission? = null
 
+    var mLastClickTime: Long = 0
+
     fun getViewDataBinding(): T {
         return viewDataBinding!!
     }

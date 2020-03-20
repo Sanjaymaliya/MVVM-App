@@ -1,6 +1,7 @@
 package com.e.app.ui.titleboard
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
@@ -71,6 +72,11 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
     }
 
     override fun onItemClick(model: Any) {
+        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+            return
+        }
+        mLastClickTime = SystemClock.elapsedRealtime()
+
         var mModel = model as TypesDatum
         var bundle=Bundle()
         bundle.putSerializable(TYPE_MODEL,mModel!!)
