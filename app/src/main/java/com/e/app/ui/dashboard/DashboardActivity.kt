@@ -1,17 +1,22 @@
 package com.e.app.ui.dashboard
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.os.SystemClock
+import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
+import com.e.app.App
 import com.e.app.BR
 import com.e.app.BuildConfig
 import com.e.app.R
 import com.e.app.base.BaseActivity
+import com.e.app.database.FirebaseDatabaseHelper
 import com.e.app.databinding.ActivityDashboardBinding
 import com.e.app.extensions.openActivity
+import com.e.app.ui.contact_us.ContactUsActivity
 import com.e.app.ui.titleboard.TitleBoardActivity
 import com.e.app.utils.ViewModelProviderFactory
 import com.google.android.gms.ads.AdRequest
@@ -73,18 +78,18 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
             }
             R.id.txtHome -> {
                 openActivity(TitleBoardActivity::class.java)
-                //viewModel.databaseHelper.writeTitle()
             }
-            R.id.txtUpdate -> {
-               // viewModel.databaseHelper.writeContest("duo")
+            R.id.txtContactUs -> {
+                openActivity(ContactUsActivity::class.java)
             }
 
-            R.id.txtFeedback -> {
+            R.id.txtShearApp -> {
+/*
 
                 if (mRewardedVideoAd.isLoaded) {
                     mRewardedVideoAd.show()
                 }
-
+*/
                 val sendIntent = Intent()
                 sendIntent.action = "android.intent.action.SEND"
                 sendIntent.putExtra(
@@ -127,5 +132,20 @@ class DashboardActivity : BaseActivity<ActivityDashboardBinding, DashboardViewMo
     override fun onRewardedVideoAdFailedToLoad(p0: Int) {
     }
 
+    override fun onBackPressed() {
+        exitApp()
+    }
+
+    private fun exitApp() {
+        // TODO Auto-generated method stub
+        val ctw = ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle)
+        val builder = AlertDialog.Builder(ctw)
+        builder.setMessage(getString(R.string.exit_msg)).setPositiveButton(getString(R.string.yes)) {
+                dialog, id ->
+
+            finish()
+            finishAffinity()
+        }.setNegativeButton(getString(R.string.cancel)) { dialog, id -> dialog.cancel() }.show()
+    }
 
 }

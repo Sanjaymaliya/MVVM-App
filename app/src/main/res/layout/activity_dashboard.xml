@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             android:text="@string/app_name"
-            app:layout_constraintTop_toTopOf="parent"
-            app:leftDrawable="@drawable/ic_back_arrow" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
 
         <TextView
@@ -94,10 +93,10 @@
             app:layout_constraintTop_toBottomOf="@+id/txtRateUs" />
 
         <TextView
-            android:id="@+id/txtUpdate"
+            android:id="@+id/txtContactUs"
             style="@style/TextViewStyle"
-            android:onClick="@{()->viewModel.onButtonClick(txtUpdate)}"
-            android:text="@string/update"
+            android:onClick="@{()->viewModel.onButtonClick(txtContactUs)}"
+            android:text="@string/contact_us"
             app:layout_constraintStart_toStartOf="@id/txtHome"
             app:layout_constraintTop_toBottomOf="@+id/view4" />
 
@@ -106,7 +105,7 @@
             android:layout_height="1dp"
             android:background="@color/colorGrey10"
             app:layout_constraintStart_toStartOf="@id/txtHome"
-            app:layout_constraintTop_toBottomOf="@+id/txtUpdate" />
+            app:layout_constraintTop_toBottomOf="@+id/txtContactUs" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

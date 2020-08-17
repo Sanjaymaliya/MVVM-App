@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.e.app.ui.contest.JoinContestViewModel
 import com.e.app.ui.dashboard.DashboardViewModel
 import com.e.app.ui.login.LoginViewModel
+import com.e.app.ui.registration.RegistrationViewModel
+import com.e.app.ui.registration_contest.RegistrationContestViewModel
 import com.e.app.ui.splashscreen.SplashViewModel
 import com.e.app.ui.titleboard.TitleBoardViewModel
 import com.e.app.ui.verifyotp.VerifyOtpViewModel
@@ -26,8 +28,8 @@ class ViewModelProviderFactory(application: Application,  session: Session) :
             modelClass.isAssignableFrom(VerifyOtpViewModel::class.java) -> VerifyOtpViewModel(application,  session) as T
             modelClass.isAssignableFrom(TitleBoardViewModel::class.java) -> TitleBoardViewModel(application,  session) as T
             modelClass.isAssignableFrom(JoinContestViewModel::class.java) -> JoinContestViewModel(application,  session) as T
-
-
+            modelClass.isAssignableFrom(RegistrationViewModel::class.java) -> RegistrationViewModel(application,  session) as T
+            modelClass.isAssignableFrom(RegistrationContestViewModel::class.java) -> RegistrationContestViewModel(application,  session) as T
 
             else -> throw IllegalArgumentException("Unknown class name")
         }

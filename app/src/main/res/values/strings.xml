@@ -13,7 +13,7 @@
     <string name="share_app">Share App</string>
     <string name="share_using">Share Application</string>
     <string name="feedback">Feedback</string>
-    <string name="update">Check for Updates</string>
+    <string name="contact_us">Contact Us</string>
 
     <string name="join_contest">Join Contest</string>
     <string name="tournament">Pubg\nTournament</string>
@@ -22,5 +22,26 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="internet_error">Internet connection error</string>
+    <string name="exit_msg">Are you sure you want to exits ?</string>
+
+    <string name="your_full_name">Your Full Name</string>
+    <string name="your_pubg_name">Your Pubg Name</string>
+    <string name="your_squard_name">Your Squad Name</string>
+    <string name="save">Save</string>
+
+    <string name="please_enter_valid_name">Please enter valid name</string>
+    <string name="please_enter_valid_pungname">Please enter valid pubg name</string>
+    <string name="please_enter_valid_squadname">Please enter valid sqaud name</string>
+
+    <string name="player_1">Player Name 1</string>
+    <string name="player_2">Player Name 2</string>
+    <string name="player_3">Player Name 3</string>
+    <string name="player_4">Player Name 4</string>
+
+    <string name="mobile_number">Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="Address">Address</string>
+    <string name="youtube_link">Youtube Channel Link</string>
+
 
 </resources>

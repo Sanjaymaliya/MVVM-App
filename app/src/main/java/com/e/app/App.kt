@@ -3,6 +3,7 @@ package com.e.app
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.e.app.database.FirebaseDatabaseHelper
 import com.e.app.koin.networkModule
 import com.e.app.koin.viewModule
 import org.koin.android.ext.koin.androidContext
@@ -14,11 +15,11 @@ class App : Application(), Application.ActivityLifecycleCallbacks {
 
     init {
         instance = this
+
     }
 
     companion object {
         lateinit var instance: App
-
     }
 
     override fun onCreate() {

@@ -11,4 +11,8 @@ interface VerifyOtpNavigator : BaseNavigator {
 
     fun otpFail(message: String?)
 
+    fun onUserLoginSuccess()
+
+    fun onUserLoginFail()
+
 }

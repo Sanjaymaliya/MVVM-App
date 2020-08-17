@@ -26,5 +26,14 @@ object Validation {
         return true
     }
 
+    fun isValidName(strValue:String):Boolean
+    {
+        if(strValue.isEmpty())
+        {
+            return false
+        }
+        return true
+    }
+
 
 }

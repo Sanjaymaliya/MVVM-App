@@ -1,8 +1,9 @@
 package com.e.app.ui.titleboard
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
+import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,12 +14,10 @@ import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityTitleBoardBinding
 import com.e.app.extensions.openActivity
 import com.e.app.extensions.showToast
-import com.e.app.model.ContentAmount
 import com.e.app.model.TypesDatum
 import com.e.app.ui.contest.JoinContestActivity
 import com.e.app.utils.TYPE_MODEL
 import com.e.app.utils.ViewModelProviderFactory
-import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.android.inject
 
 
@@ -78,14 +77,29 @@ class TitleBoardActivity : BaseActivity<ActivityTitleBoardBinding, TitleBoardVie
         mLastClickTime = SystemClock.elapsedRealtime()
 
         var mModel = model as TypesDatum
-        var bundle=Bundle()
-        bundle.putSerializable(TYPE_MODEL,mModel!!)
-        openActivity(JoinContestActivity::class.java,bundle)
+        var bundle = Bundle()
+        bundle.putSerializable(TYPE_MODEL, mModel!!)
+        openActivity(JoinContestActivity::class.java, bundle)
     }
 
     override fun onError() {
         showToast(getString(R.string.internet_error))
     }
 
+    override fun onBackPressed() {
+        exitApp()
+    }
 
+    private fun exitApp() {
+        // TODO Auto-generated method stub
+        val ctw = ContextThemeWrapper(this, R.style.AppCompatAlertDialogStyle)
+        val builder = AlertDialog.Builder(ctw)
+        builder.setMessage(getString(R.string.exit_msg)).setPositiveButton(getString(R.string.yes)) {
+
+                dialog, id ->
+
+            finish()
+            finishAffinity()
+        }.setNegativeButton(getString(R.string.cancel)) { dialog, id -> dialog.cancel() }.show()
+    }
 }

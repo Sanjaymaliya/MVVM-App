@@ -22,7 +22,9 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
-        <activity android:name=".ui.LiveExamActivity" />
+        <activity
+            android:name=".ui.contact_us.ContactUsActivity"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.titleboard.TitleBoardActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -30,10 +32,24 @@
         <activity
             android:name=".ui.dashboard.DashboardActivity"
             android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".ui.registration.RegistrationActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.registration_contest.RegistrationContestActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+
+
         <activity
             android:name=".ui.login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.splashscreen.SplashActivity" android:theme="@style/SplashTheme">
+        <activity
+            android:name=".ui.splashscreen.SplashActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,8 +59,7 @@
 
         <meta-data
             android:name="com.razorpay.ApiKey"
-            android:value="rzp_test_fdUtlx02zVli9d"
-            />
+            android:value="rzp_test_fdUtlx02zVli9d" />
     </application>
 
 </manifest>

@@ -48,6 +48,7 @@
                 android:text="PUBG"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

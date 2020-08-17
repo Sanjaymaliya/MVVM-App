@@ -9,7 +9,10 @@ import com.e.app.databinding.ActivitySplashBinding
 import com.e.app.extensions.openActivity
 import com.e.app.ui.dashboard.DashboardActivity
 import com.e.app.ui.login.LoginActivity
+import com.e.app.ui.registration.RegistrationActivity
+import com.e.app.utils.Session.Key.APP_AUTH
 import com.e.app.utils.ViewModelProviderFactory
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.android.inject
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), SplashNavigator {
@@ -44,14 +47,23 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
 
         if(viewModel.isLogin())
         {
-            openActivity(DashboardActivity::class.java)
-            finish()
+            viewModel.getUserInformation(FirebaseAuth.getInstance().currentUser!!.uid)
         }
         else
         {
             openActivity(LoginActivity::class.java)
             finish()
         }
+    }
+
+    override fun onUserLoginSuccess() {
+        openActivity(DashboardActivity::class.java)
+        finish()
+    }
+
+    override fun onUserLoginFail() {
+        openActivity(RegistrationActivity::class.java)
+        finish()
     }
 
 }

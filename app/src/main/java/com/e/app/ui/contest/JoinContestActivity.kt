@@ -19,10 +19,12 @@ import com.e.app.base.BaseActivity
 import com.e.app.databinding.ActivityJoinContestBinding
 import com.e.app.extensions.NetworkUtils
 import com.e.app.extensions.getProgressDialog
+import com.e.app.extensions.openActivity
 import com.e.app.extensions.showToast
 import com.e.app.model.ContentAmount
 import com.e.app.model.ContestModel
 import com.e.app.model.TypesDatum
+import com.e.app.ui.registration_contest.RegistrationContestActivity
 import com.e.app.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import com.razorpay.Checkout
@@ -32,7 +34,7 @@ import org.koin.android.ext.android.inject
 
 
 class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContestViewModel>(),
-    JoinContestNavigator, PaymentResultListener {
+    JoinContestNavigator {
     private var mProgressDialog: ProgressDialog? = null
 
     private val factory: ViewModelProviderFactory by inject()
@@ -117,51 +119,6 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
 
     }
 
-    private fun startPayment(amount: String) {
-        val activity: Activity = this
-        val co = Checkout()
-
-        try {
-            var totalAmount = amount.toInt() * 100
-            val options = JSONObject()
-            options.put(NAME, RAZORPAY_CROP)
-            options.put(DESCRIPTION, DESCRIPTION_TEXT)
-            options.put(IMAGE, IMAGE_URL)
-            options.put(CURRENCY, CURRENCY_NAME)
-            options.put(AMOUNT, totalAmount)
-
-            /* val prefill = JSONObject()
-             prefill.put("email", "malyasanjay43@gmail.com")
-             prefill.put("contact", "9724365084")
-
-             options.put("prefill", prefill)*/
-            co.open(activity, options)
-        } catch (e: Exception) {
-            Toast.makeText(activity, "Error in payment: " + e.message, Toast.LENGTH_LONG).show()
-            e.printStackTrace()
-
-        }
-    }
-
-    override fun onPaymentError(errorCode: Int, response: String?) {
-        try {
-            showToast("Payment failed $errorCode \n $response")
-        } catch (e: Exception) {
-            Log.e("Nish ->", "Exception in onPaymentSuccess", e)
-        }
-    }
-
-    override fun onPaymentSuccess(razorpayPaymentId: String?) {
-        try {
-            viewModel.databaseHelper.writeAmount(
-                viewModel.databaseHelper.currentUser!!.uid,
-                viewModel.mModel!!.name!!.toLowerCase(),viewModel.mDataAmountModel.price!!
-            )
-        } catch (e: Exception) {
-            showToast("Exception in onPaymentSuccess")
-        }
-    }
-
     private fun showProgress() {
 
         mProgressDialog = getProgressDialog(this)
@@ -181,7 +138,10 @@ class JoinContestActivity : BaseActivity<ActivityJoinContestBinding, JoinContest
         builder.setMessage(getString(R.string.note_minimum_pubg_level_required_30_or_above_nhacking_is_strictly_prohibited))
             .setPositiveButton(getString(R.string.yes)) { dialog, id ->
                 if (NetworkUtils.isNetworkAvailable(this)) {
-                    startPayment(amount)
+                    var bundle = Bundle()
+                    bundle.putSerializable(TYPE_MODEL, viewModel.mModel)
+                    bundle.putSerializable(AMOUNT, amount)
+                    openActivity(RegistrationContestActivity::class.java, bundle)
                 }
                 else{
                     showToast(getString(R.string.internet_error))

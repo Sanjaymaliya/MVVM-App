@@ -1,6 +1,7 @@
 package com.e.app.ui.contest
 
 import android.app.Application
+import com.e.app.App
 import com.e.app.adapter.JoinContestAdapater
 import com.e.app.base.BaseViewModel
 import com.e.app.database.FirebaseDatabaseHelper
@@ -12,9 +13,9 @@ import com.e.app.utils.Session
 class JoinContestViewModel(application: Application, session: Session) :
     BaseViewModel<JoinContestNavigator>(application, session) {
 
-    lateinit var joinContestAdapater: JoinContestAdapater
-
     val databaseHelper = FirebaseDatabaseHelper()
+
+    lateinit var joinContestAdapater: JoinContestAdapater
 
     var mModel: TypesDatum?=null
 
@@ -39,7 +40,7 @@ class JoinContestViewModel(application: Application, session: Session) :
 
     fun getGameTypeJoin(uId:String,Type:String)
     {
-        databaseHelper.readUserAmount(object : FirebaseDatabaseHelper.DataStatus {
+         databaseHelper.readUserAmount(object : FirebaseDatabaseHelper.DataStatus {
             override fun DataIsLoaded(userAmount: List<Any>) {
                 getNavigator()?.onGameJoinContentSuccess( userAmount as ArrayList<ContentAmount>)
             }

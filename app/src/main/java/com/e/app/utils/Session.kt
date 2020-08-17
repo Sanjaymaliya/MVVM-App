@@ -2,6 +2,10 @@ package com.e.app.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.text.TextUtils
+import com.e.app.model.UserModel
+import com.e.app.utils.Session.Key.APP_USER
+import com.google.gson.Gson
 
 
 class Session(context: Context) {
@@ -21,7 +25,32 @@ class Session(context: Context) {
         editor.clear()
         editor.commit()
     }
+    fun getString(value:String): String {
+        return pref.getString(value, "")!!
+    }
 
+    fun storeUserDetails(userModel: UserModel) {
+        val gson = Gson()
+        val json = gson.toJson(userModel)
+        setString(APP_USER, json)
+    }
+
+    fun getUserDetails(): UserModel? {
+        var userInformation: UserModel?
+        val gson = Gson()
+        val json = getString(APP_USER)
+        if (TextUtils.isEmpty(json))
+            return null
+        userInformation = gson.fromJson(json, UserModel::class.java)
+
+        return userInformation
+    }
+
+    fun setString(key: String, value: String) {
+        val editor = pref.edit()
+        editor.putString(key, value)
+        editor.apply()
+    }
 
    /* fun isChild(isChild: Boolean) {
         editor.putBoolean(APP_USER_No_Child, isChild)
@@ -40,32 +69,7 @@ class Session(context: Context) {
     val isLogin: Boolean
         get() = pref.getBoolean(IS_LOGIN, false)
 
-    fun getString(value:String): String {
-        return pref.getString(value, "")!!
-    }
 
-    fun storeUserDetails(userModel: LoginResponse) {
-        val gson = Gson()
-        val json = gson.toJson(userModel)
-        setString(APP_USER, json)
-    }
-
-    fun getUserDetails(): LoginResponse? {
-        var userInformation: LoginResponse?
-        val gson = Gson()
-        val json = getString(APP_USER)
-        if (TextUtils.isEmpty(json))
-            return null
-        userInformation = gson.fromJson(json, LoginResponse::class.java)
-
-        return userInformation
-    }
-
-    fun setString(key: String, value: String) {
-        val editor = pref.edit()
-        editor.putString(key, value)
-        editor.apply()
-    }
 
     fun storeUserInfo(userModel: RegisterResponse) {
         val gson = Gson()

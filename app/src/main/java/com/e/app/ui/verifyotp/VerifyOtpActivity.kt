@@ -10,9 +10,11 @@ import com.e.app.extensions.NetworkUtils
 import com.e.app.extensions.openActivity
 import com.e.app.extensions.showToast
 import com.e.app.ui.dashboard.DashboardActivity
+import com.e.app.ui.registration.RegistrationActivity
 import com.e.app.utils.PHONE_NUMBER
 import com.e.app.utils.Validation.isOtpValid
 import com.e.app.utils.ViewModelProviderFactory
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.android.inject
 
 class VerifyOtpActivity : BaseActivity<ActivityVerifyOtpBinding, VerifyOtpViewModel>(),
@@ -44,7 +46,7 @@ class VerifyOtpActivity : BaseActivity<ActivityVerifyOtpBinding, VerifyOtpViewMo
         intent.extras?.run {
             viewModel.phoneNumber = getString(PHONE_NUMBER, "")
         }
-        viewModel.sendVerificationCode(viewModel.phoneNumber)
+        viewModel.sendVerificationCode(this@VerifyOtpActivity,viewModel.phoneNumber)
 
     }
 
@@ -53,18 +55,27 @@ class VerifyOtpActivity : BaseActivity<ActivityVerifyOtpBinding, VerifyOtpViewMo
     }
 
     override fun otpSuccess() {
-        openActivity(DashboardActivity::class.java)
-        finish()
+       viewModel.getUserInformation(FirebaseAuth.getInstance().currentUser!!.uid)
     }
 
     override fun otpFail(message: String?) {
         showToast(message!!)
     }
 
+    override fun onUserLoginSuccess() {
+        openActivity(DashboardActivity::class.java)
+        finish()
+    }
+
+    override fun onUserLoginFail() {
+        openActivity(RegistrationActivity::class.java)
+        finish()
+    }
+
     override fun onVerifyButtonClickHandle() {
         if (isOtpValid(activityVerifyOtpBinding!!.otpView.text.toString())) {
             if (NetworkUtils.isNetworkAvailable(this)) {
-                viewModel.verifyCode(activityVerifyOtpBinding!!.otpView.text.toString())
+                viewModel.verifyCode(this@VerifyOtpActivity,activityVerifyOtpBinding!!.otpView.text.toString())
             }
             else
             {

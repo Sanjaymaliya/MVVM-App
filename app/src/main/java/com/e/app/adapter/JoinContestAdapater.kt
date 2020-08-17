@@ -40,7 +40,7 @@ class JoinContestAdapater(val context: Context, var mListener: JoinContestNaviga
             itemJoincontestBinding.txtDate.text= joinContestList[position].dateTime
             itemJoincontestBinding.txtMapName.text= joinContestList[position].map
             itemJoincontestBinding.txtTypeName.text= joinContestList[position].type
-            itemJoincontestBinding.txtWinFee.text= joinContestList[position].winAmount
+            itemJoincontestBinding.txtWinFee.text= "₹"+joinContestList[position].winAmount
             itemJoincontestBinding.txtEntryFee.text= "₹"+joinContestList[position].price
 
             if(amountPay==1)

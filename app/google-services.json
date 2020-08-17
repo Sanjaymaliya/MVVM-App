@@ -1,71 +1,42 @@
 {
   "project_info": {
-    "project_number": "828435230865",
-    "firebase_url": "https://opt-demo-51920.firebaseio.com",
-    "project_id": "opt-demo-51920",
-    "storage_bucket": "opt-demo-51920.appspot.com"
+    "project_number": "28470592594",
+    "firebase_url": "https://pungtunaments.firebaseio.com",
+    "project_id": "pungtunaments",
+    "storage_bucket": "pungtunaments.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:828435230865:android:12b2d8029e100bce8bcf30",
+        "mobilesdk_app_id": "1:28470592594:android:67cfb3ab5f558e8a1f8b8b",
         "android_client_info": {
-          "package_name": "com.e.quizapp"
+          "package_name": "com.e.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "828435230865-a5dshpq99h5jgu7mqu4ld9m9lotl7et7.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAmDB3ZBZDVyqlMhPAkcFybEbFrbUhlgrQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "828435230865-a5dshpq99h5jgu7mqu4ld9m9lotl7et7.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:828435230865:android:31102b5b3261746c8bcf30",
-        "android_client_info": {
-          "package_name": "me.obydul.firebasephoneverification"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "828435230865-jcd66ddoomhiijb1f2gbqllq5if4odtb.apps.googleusercontent.com",
+          "client_id": "28470592594-0sqcj3dmkrhr5205re9ij1pbipth5u16.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "me.obydul.firebasephoneverification",
-            "certificate_hash": "bb9346d2620bc6768d7db829c18181356b18a1fd"
+            "package_name": "com.e.app",
+            "certificate_hash": "2faf690ddfc4d9ae9a5b1147531bf0559d25be44"
           }
         },
         {
-          "client_id": "828435230865-a5dshpq99h5jgu7mqu4ld9m9lotl7et7.apps.googleusercontent.com",
+          "client_id": "28470592594-71dp96ejodn08tq38e4dfb9431kqu78i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAmDB3ZBZDVyqlMhPAkcFybEbFrbUhlgrQ"
+          "current_key": "AIzaSyB7jhENnzW4wGtJPdyiHYCj_VtcHDDoarw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "828435230865-a5dshpq99h5jgu7mqu4ld9m9lotl7et7.apps.googleusercontent.com",
+              "client_id": "28470592594-71dp96ejodn08tq38e4dfb9431kqu78i.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
